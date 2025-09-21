@@ -80,6 +80,10 @@ class DataFetcher:
             'Volume': 'volume'
         })
 
+        # Convert timezone-aware index to timezone-naive to prevent comparison issues
+        if data.index.tz is not None:
+            data.index = data.index.tz_convert(None)
+
         # Add ticker symbol
         data['symbol'] = symbol
 
@@ -237,9 +241,15 @@ class DataFetcher:
             data_points = len(data)
             all_data_points.append(data_points)
 
-            # Check date range
+            # Check date range (ensure timezone-naive for comparison)
             symbol_earliest = data.index.min()
             symbol_latest = data.index.max()
+
+            # Convert to timezone-naive if needed
+            if hasattr(symbol_earliest, 'tz') and symbol_earliest.tz is not None:
+                symbol_earliest = symbol_earliest.tz_convert(None)
+            if hasattr(symbol_latest, 'tz') and symbol_latest.tz is not None:
+                symbol_latest = symbol_latest.tz_convert(None)
 
             if earliest_date is None or symbol_earliest < earliest_date:
                 earliest_date = symbol_earliest

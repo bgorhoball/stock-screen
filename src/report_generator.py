@@ -76,7 +76,9 @@ class ReportGenerator:
                 'base_length_days': result.base_length_days,
                 'volume_trend': result.volume_trend,
                 'breakout_detected': result.breakout_date is not None,
-                'breakout_date': result.breakout_date.strftime('%Y-%m-%d') if result.breakout_date else '',
+                'breakout_date': (result.breakout_date.tz_convert(None).strftime('%Y-%m-%d')
+                                 if result.breakout_date and hasattr(result.breakout_date, 'tz') and result.breakout_date.tz
+                                 else result.breakout_date.strftime('%Y-%m-%d') if result.breakout_date else ''),
                 'breakout_price': round(result.breakout_price, 2) if result.breakout_price else '',
                 'pullback_range_min': round(pullback_min, 1),
                 'pullback_range_max': round(pullback_max, 1),
@@ -170,9 +172,15 @@ class ReportGenerator:
         json_summary = summary.copy()
         date_range = json_summary.get('data_date_range', {})
         if date_range.get('earliest'):
-            date_range['earliest'] = date_range['earliest'].strftime('%Y-%m-%d')
+            earliest = date_range['earliest']
+            if hasattr(earliest, 'tz') and earliest.tz:
+                earliest = earliest.tz_convert(None)
+            date_range['earliest'] = earliest.strftime('%Y-%m-%d')
         if date_range.get('latest'):
-            date_range['latest'] = date_range['latest'].strftime('%Y-%m-%d')
+            latest = date_range['latest']
+            if hasattr(latest, 'tz') and latest.tz:
+                latest = latest.tz_convert(None)
+            date_range['latest'] = latest.strftime('%Y-%m-%d')
 
         with open(filepath, 'w') as f:
             json.dump(json_summary, f, indent=2)
