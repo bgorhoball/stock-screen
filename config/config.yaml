@@ -1,0 +1,47 @@
+data_sources:
+  primary: "yfinance"              # Primary data source (free, unlimited)
+  fallback: "alpha_vantage"        # Backup data source (500 calls/day)
+  realtime: "finnhub"              # Real-time monitoring (60 calls/minute)
+
+vcp_parameters:
+  min_contractions: 2              # Minimum contractions required (2-6 range)
+  max_contractions: 6              # Maximum contractions to consider
+  min_base_length_days: 7          # Minimum base formation length
+  volume_decrease_threshold: 0.8   # Volume contraction threshold
+  max_pullback_percentage: 50.0    # Maximum pullback size allowed
+  min_weeks_data: 12               # Minimum historical data required
+  breakout_volume_multiplier: 1.5  # Volume increase for breakout confirmation
+  price_near_highs_threshold: 0.75 # Must be within 25% of 52-week high
+
+screening:
+  historical_weeks: 12             # Weeks of historical data to fetch
+  min_price: 10.0                  # Minimum stock price filter
+  min_average_volume: 100000       # Minimum average volume filter
+  confidence_threshold: 0.5        # Minimum confidence for reporting
+  high_confidence_threshold: 0.7   # Threshold for real-time monitoring
+
+notifications:
+  enabled: true
+  primary_channel: "telegram"      # Primary notification channel
+  channels:
+    - "telegram"                   # Private Telegram bot (preferred)
+    - "github_issues"              # GitHub issue creation
+
+  telegram:
+    daily_reports: true            # Send daily screening summaries
+    breakout_alerts: true          # Send real-time breakout alerts
+    error_alerts: true             # Send system error notifications
+    monitoring_updates: true       # Send VCP monitoring updates
+
+monitoring:
+  enabled: true                    # Enable real-time monitoring
+  api_source: "finnhub"            # API for real-time data
+  scan_interval_minutes: 2         # Scan frequency during market hours
+  market_hours_only: true          # Only monitor during market hours
+  max_candidates: 20               # Maximum symbols to monitor simultaneously
+  cleanup_age_days: 14             # Remove old candidates after N days
+
+output:
+  format: "csv"                    # Primary output format
+  include_charts: false            # Chart generation (future feature)
+  save_monitoring_list: true       # Save VCP candidates for monitoring

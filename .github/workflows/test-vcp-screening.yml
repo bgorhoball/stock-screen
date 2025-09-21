@@ -1,0 +1,67 @@
+name: Test VCP Screening
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-screening:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install PyYAML pytest
+
+    - name: Test ticker fetching
+      run: |
+        python -c "
+        import sys
+        sys.path.append('src')
+        from ticker_fetcher import SP500TickerFetcher
+        fetcher = SP500TickerFetcher()
+        tickers = fetcher.get_sp500_tickers()
+        print(f'Fetched {len(tickers)} tickers')
+        assert len(tickers) > 400, 'Expected at least 400 S&P 500 tickers'
+        "
+
+    - name: Test data fetching with sample symbols
+      run: |
+        python -c "
+        import sys
+        sys.path.append('src')
+        from data_fetcher import DataFetcher
+        fetcher = DataFetcher()
+        test_symbols = ['AAPL', 'MSFT', 'GOOGL']
+        data = fetcher.fetch_multiple_stocks(test_symbols, weeks=4)
+        print(f'Fetched data for {len(data)} symbols')
+        assert len(data) > 0, 'Should fetch data for at least one symbol'
+        "
+
+    - name: Test VCP detection
+      run: |
+        python src/vcp_detector.py
+
+    - name: Test full screening with limited symbols
+      env:
+        ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+      run: |
+        python vcp_screen.py --max-symbols 10 --verbose
+
+    - name: Verify output files
+      run: |
+        ls -la daily_reports/
+        # Check that CSV and JSON files were created
+        find daily_reports/ -name "*.csv" -o -name "*.json" | head -5

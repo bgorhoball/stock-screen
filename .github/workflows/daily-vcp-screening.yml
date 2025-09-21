@@ -1,0 +1,231 @@
+name: Daily VCP Screening
+
+on:
+  schedule:
+    # Run at 7:00 PM ET (11:00 PM UTC) Monday-Friday
+    - cron: '0 23 * * 1-5'
+  workflow_dispatch:  # Allow manual triggering
+    inputs:
+      max_symbols:
+        description: 'Maximum number of symbols to process (for testing)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run (fetch data only, skip analysis)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  vcp-screening:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Create output directory
+      run: mkdir -p daily_reports
+
+    - name: Run VCP screening with Telegram notifications
+      env:
+        ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+        FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+          DRY_RUN_FLAG="--dry-run"
+        else
+          DRY_RUN_FLAG=""
+        fi
+
+        if [ -n "${{ github.event.inputs.max_symbols }}" ]; then
+          MAX_SYMBOLS_FLAG="--max-symbols ${{ github.event.inputs.max_symbols }}"
+        else
+          MAX_SYMBOLS_FLAG=""
+        fi
+
+        python vcp_screen.py \
+          --output daily_reports \
+          --config config/config.yaml \
+          --verbose \
+          $DRY_RUN_FLAG \
+          $MAX_SYMBOLS_FLAG
+
+    - name: Upload screening reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: vcp-reports-${{ github.run_number }}
+        path: daily_reports/
+        retention-days: 30
+
+    - name: Create GitHub Issue with Results
+      if: ${{ github.event.inputs.dry_run != 'true' }}
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+
+          // Find the latest GitHub report file
+          const reportsDir = 'daily_reports';
+          const files = fs.readdirSync(reportsDir);
+          const githubReports = files.filter(f => f.startsWith('github_report_'));
+
+          if (githubReports.length === 0) {
+            console.log('No GitHub report found');
+            return;
+          }
+
+          // Get the latest report
+          const latestReport = githubReports.sort().pop();
+          const reportPath = path.join(reportsDir, latestReport);
+          const reportContent = fs.readFileSync(reportPath, 'utf8');
+
+          // Create GitHub issue
+          const issue = await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `VCP Screening Report - ${new Date().toISOString().split('T')[0]}`,
+            body: reportContent,
+            labels: ['vcp-screening', 'automated-report']
+          });
+
+          console.log(`Created issue #${issue.data.number}`);
+
+    - name: Send VCP monitoring update
+      if: ${{ github.event.inputs.dry_run != 'true' }}
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      run: |
+        python -c "
+        import sys
+        sys.path.append('src')
+        from telegram_bot import TelegramBot
+        from finnhub_monitor import FinnhubMonitor
+        import json
+        import os
+        from datetime import datetime
+
+        # Initialize components
+        bot = TelegramBot()
+        monitor = FinnhubMonitor()
+
+        if bot.enabled:
+            # Load screening results to update monitoring
+            try:
+                files = [f for f in os.listdir('daily_reports') if f.startswith('vcp_matches_')]
+                if files:
+                    latest_csv = sorted(files)[-1]
+                    import pandas as pd
+                    matches_df = pd.read_csv(f'daily_reports/{latest_csv}')
+
+                    # Add high-confidence VCP patterns to Finnhub monitoring
+                    new_candidates = []
+                    for _, row in matches_df.iterrows():
+                        if row['confidence'] >= 0.7:  # High confidence threshold
+                            # Calculate resistance level (approximate from breakout price)
+                            resistance = row.get('breakout_price', 0) * 0.99 if row.get('breakout_price', 0) > 0 else 100
+
+                            monitor.add_vcp_candidate(
+                                symbol=row['symbol'],
+                                resistance_level=resistance,
+                                avg_volume=1000000,  # Default volume
+                                confidence=row['confidence'],
+                                base_length_days=row['base_length_days']
+                            )
+                            new_candidates.append(row['symbol'])
+
+                    if new_candidates:
+                        bot.send_monitoring_update(new_candidates, [])
+                        print(f'Added {len(new_candidates)} VCP candidates to monitoring')
+                    else:
+                        print('No high-confidence VCP patterns to monitor')
+                else:
+                    print('No VCP results file found')
+            except Exception as e:
+                print(f'Error updating monitoring: {e}')
+                if bot.enabled:
+                    bot.send_error_alert('Monitoring Update', str(e))
+        else:
+            print('Telegram bot not configured')
+        "
+
+    - name: Update VCP candidates list
+      if: ${{ github.event.inputs.dry_run != 'true' }}
+      run: |
+        # Create/update VCP candidates file for real-time monitoring
+        python -c "
+        import os
+        import json
+        import pandas as pd
+        from datetime import datetime
+
+        # Load latest VCP results
+        try:
+            files = [f for f in os.listdir('daily_reports') if f.startswith('vcp_matches_')]
+            if files:
+                latest_csv = sorted(files)[-1]
+                df = pd.read_csv(f'daily_reports/{latest_csv}')
+
+                # Filter high-confidence patterns for monitoring
+                monitoring_candidates = df[df['confidence'] >= 0.7].to_dict('records')
+
+                # Save to monitoring file
+                monitoring_data = {
+                    'last_updated': datetime.now().isoformat(),
+                    'candidates': monitoring_candidates,
+                    'total_count': len(monitoring_candidates)
+                }
+
+                with open('daily_reports/vcp_monitoring_candidates.json', 'w') as f:
+                    json.dump(monitoring_data, f, indent=2, default=str)
+
+                print(f'Updated monitoring candidates: {len(monitoring_candidates)} symbols')
+            else:
+                print('No VCP results to process')
+        except Exception as e:
+            print(f'Error updating candidates list: {e}')
+        "
+
+    - name: Commit reports to repository
+      if: ${{ github.event.inputs.dry_run != 'true' }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+        # Add only the latest reports to avoid repository bloat
+        TODAY=$(date +%Y%m%d)
+        git add daily_reports/*${TODAY}*
+
+        if git diff --staged --quiet; then
+          echo "No new reports to commit"
+        else
+          git commit -m "Add VCP screening reports for $(date +%Y-%m-%d)
+
+          🤖 Generated with [Claude Code](https://claude.ai/code)
+
+          Co-Authored-By: Claude <noreply@anthropic.com>"
+          git push
+        fi

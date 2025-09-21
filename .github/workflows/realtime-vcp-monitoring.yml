@@ -1,0 +1,196 @@
+name: Real-time VCP Monitoring
+
+on:
+  schedule:
+    # Run every 2 minutes during market hours (9:30 AM - 4:00 PM ET)
+    # 13:30-20:00 UTC = 9:30 AM-4:00 PM ET
+    - cron: '*/2 13-20 * * 1-5'
+  workflow_dispatch:  # Allow manual triggering
+    inputs:
+      test_mode:
+        description: 'Test mode with sample alerts'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  monitor-breakouts:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Check market hours
+      id: market_check
+      run: |
+        python -c "
+        from datetime import datetime
+        import pytz
+
+        # Check if market is open (9:30 AM - 4:00 PM ET, Monday-Friday)
+        et_tz = pytz.timezone('America/New_York')
+        now_et = datetime.now(et_tz)
+
+        market_open = now_et.replace(hour=9, minute=30, second=0, microsecond=0)
+        market_close = now_et.replace(hour=16, minute=0, second=0, microsecond=0)
+
+        is_market_open = (
+            market_open <= now_et <= market_close and
+            now_et.weekday() < 5  # Monday=0, Friday=4
+        )
+
+        print(f'market_open={str(is_market_open).lower()}')
+        print(f'current_time={now_et.strftime(\"%H:%M:%S ET\")}')
+
+        # Set GitHub Actions output
+        with open('$GITHUB_OUTPUT', 'a') as f:
+            f.write(f'market_open={str(is_market_open).lower()}\n')
+            f.write(f'current_time={now_et.strftime(\"%H:%M:%S ET\")}\n')
+        "
+
+    - name: Monitor VCP breakouts
+      if: steps.market_check.outputs.market_open == 'true' || github.event.inputs.test_mode == 'true'
+      env:
+        FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        python -c "
+        import sys
+        sys.path.append('src')
+        from finnhub_monitor import FinnhubMonitor, BreakoutAlert
+        from telegram_bot import TelegramBot
+        import json
+        import os
+        from datetime import datetime
+
+        # Initialize components
+        monitor = FinnhubMonitor()
+        bot = TelegramBot()
+
+        print(f'Starting VCP breakout monitoring at {datetime.now().strftime(\"%H:%M:%S ET\")}')
+
+        # Load VCP candidates for monitoring
+        try:
+            if os.path.exists('daily_reports/vcp_monitoring_candidates.json'):
+                with open('daily_reports/vcp_monitoring_candidates.json', 'r') as f:
+                    monitoring_data = json.load(f)
+
+                candidates = monitoring_data.get('candidates', [])
+                print(f'Loaded {len(candidates)} VCP candidates for monitoring')
+
+                # Add candidates to Finnhub monitor
+                for candidate in candidates:
+                    # Estimate resistance level from data
+                    resistance = candidate.get('breakout_price', 0)
+                    if resistance == 0:
+                        resistance = 100  # Default placeholder
+
+                    monitor.add_vcp_candidate(
+                        symbol=candidate['symbol'],
+                        resistance_level=resistance,
+                        avg_volume=1000000,  # Default
+                        confidence=candidate['confidence'],
+                        base_length_days=candidate['base_length_days']
+                    )
+
+                print(f'Added {len(candidates)} candidates to real-time monitoring')
+            else:
+                print('No VCP candidates file found - nothing to monitor')
+                candidates = []
+
+        except Exception as e:
+            print(f'Error loading VCP candidates: {e}')
+            if bot.enabled:
+                bot.send_error_alert('Candidate Loading', str(e))
+            candidates = []
+
+        # Test mode - simulate alerts
+        if '${{ github.event.inputs.test_mode }}' == 'true':
+            print('Running in test mode - simulating breakout alerts')
+
+            # Create test alert
+            test_alert = BreakoutAlert(
+                symbol='TEST',
+                current_price=150.50,
+                resistance_level=148.00,
+                breakout_percentage=1.69,
+                current_volume=2500000,
+                avg_volume=1500000,
+                volume_ratio=1.67,
+                timestamp=datetime.now(),
+                confidence='high'
+            )
+
+            if bot.enabled:
+                success = bot.send_breakout_alert(test_alert)
+                print(f'Test alert sent: {success}')
+
+        # Real monitoring mode
+        elif candidates:
+            print('Scanning for real breakouts...')
+
+            # Scan for breakouts
+            alerts = monitor.scan_all_candidates()
+
+            if alerts:
+                print(f'🚀 Found {len(alerts)} breakout alerts!')
+
+                for alert in alerts:
+                    print(f'Breakout: {alert.symbol} at \${alert.current_price:.2f} (+{alert.breakout_percentage:.1f}%)')
+
+                    # Send Telegram alert
+                    if bot.enabled:
+                        success = bot.send_breakout_alert(alert)
+                        print(f'Alert sent for {alert.symbol}: {success}')
+            else:
+                print('No breakouts detected in current scan')
+
+            # Get monitoring summary
+            summary = monitor.get_monitoring_summary()
+            print(f'Monitoring summary: {summary}')
+
+        else:
+            print('No VCP candidates to monitor')
+
+        print('VCP monitoring cycle complete')
+        "
+
+    - name: Skip monitoring (market closed)
+      if: steps.market_check.outputs.market_open == 'false' && github.event.inputs.test_mode != 'true'
+      run: |
+        echo "Market is closed (${{ steps.market_check.outputs.current_time }}). Skipping VCP monitoring."
+        echo "Real-time monitoring runs during market hours: 9:30 AM - 4:00 PM ET, Monday-Friday"
+
+    - name: Cleanup old candidates
+      if: always()
+      run: |
+        # Remove VCP candidates older than 14 days
+        python -c "
+        import sys
+        sys.path.append('src')
+        from finnhub_monitor import FinnhubMonitor
+
+        monitor = FinnhubMonitor()
+        monitor.cleanup_old_candidates(max_age_days=14)
+        print('Cleaned up old VCP candidates')
+        "
