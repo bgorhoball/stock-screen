@@ -7,11 +7,16 @@ on:
   workflow_dispatch:  # Allow manual triggering
     inputs:
       max_symbols:
-        description: 'Maximum number of symbols to process (for testing)'
+        description: 'Maximum number of symbols to process (leave empty for full S&P 500)'
         required: false
         default: ''
       dry_run:
         description: 'Dry run (fetch data only, skip analysis)'
+        required: false
+        default: 'false'
+        type: boolean
+      force_production:
+        description: 'Force production mode (scan full S&P 500 even in manual run)'
         required: false
         default: 'false'
         type: boolean
@@ -52,17 +57,33 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: |
-        if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-          DRY_RUN_FLAG="--dry-run"
-        else
+        # Determine if this is a scheduled run (production) or manual run (test)
+        if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.force_production }}" = "true" ]; then
+          echo "🕐 PRODUCTION RUN: Scheduled daily screening of full S&P 500"
+          SCREENING_MODE="PRODUCTION"
           DRY_RUN_FLAG=""
+          MAX_SYMBOLS_FLAG=""
+        else
+          echo "🧪 MANUAL RUN: Testing with user parameters"
+          SCREENING_MODE="TEST"
+
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            DRY_RUN_FLAG="--dry-run"
+          else
+            DRY_RUN_FLAG=""
+          fi
+
+          if [ -n "${{ github.event.inputs.max_symbols }}" ]; then
+            MAX_SYMBOLS_FLAG="--max-symbols ${{ github.event.inputs.max_symbols }}"
+            echo "📊 Testing with ${{ github.event.inputs.max_symbols }} symbols"
+          else
+            MAX_SYMBOLS_FLAG=""
+            echo "📊 Testing with full symbol set"
+          fi
         fi
 
-        if [ -n "${{ github.event.inputs.max_symbols }}" ]; then
-          MAX_SYMBOLS_FLAG="--max-symbols ${{ github.event.inputs.max_symbols }}"
-        else
-          MAX_SYMBOLS_FLAG=""
-        fi
+        echo "Screening mode: $SCREENING_MODE"
+        echo "Command: python vcp_screen.py --output daily_reports --config config/config.yaml --verbose $DRY_RUN_FLAG $MAX_SYMBOLS_FLAG"
 
         python vcp_screen.py \
           --output daily_reports \

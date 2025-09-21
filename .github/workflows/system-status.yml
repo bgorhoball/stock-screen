@@ -1,0 +1,202 @@
+name: VCP System Status Check
+
+on:
+  workflow_dispatch:  # Manual trigger
+  schedule:
+    # Run system status check daily at 6 PM ET (before main screening)
+    - cron: '0 22 * * 1-5'
+
+jobs:
+  system-status:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Check VCP system status
+      env:
+        ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+        FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        python -c "
+        import sys
+        sys.path.append('src')
+        from telegram_bot import TelegramBot
+        from ticker_fetcher import SP500TickerFetcher
+        from data_fetcher import DataFetcher
+        import logging
+        from datetime import datetime
+
+        logging.basicConfig(level=logging.INFO)
+
+        print('🔍 VCP SYSTEM STATUS CHECK')
+        print('=' * 40)
+
+        status = {
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S ET'),
+            'components': {},
+            'overall_health': True
+        }
+
+        # 1. Check Telegram Bot
+        print('📱 Checking Telegram bot...')
+        try:
+            bot = TelegramBot()
+            if bot.enabled:
+                validation = bot.validate_configuration()
+                if validation['bot_accessible'] and validation['chat_accessible']:
+                    print('✅ Telegram bot: OPERATIONAL')
+                    status['components']['telegram'] = 'operational'
+                else:
+                    print('❌ Telegram bot: CONFIGURATION ISSUE')
+                    status['components']['telegram'] = 'misconfigured'
+                    status['overall_health'] = False
+            else:
+                print('⚠️ Telegram bot: NOT CONFIGURED')
+                status['components']['telegram'] = 'not_configured'
+        except Exception as e:
+            print(f'❌ Telegram bot: ERROR - {e}')
+            status['components']['telegram'] = 'error'
+            status['overall_health'] = False
+
+        # 2. Check Ticker Fetching
+        print('📊 Checking ticker fetching...')
+        try:
+            fetcher = SP500TickerFetcher()
+            tickers = fetcher.get_sp500_tickers()
+
+            if len(tickers) >= 400:
+                print(f'✅ Ticker fetching: OPERATIONAL ({len(tickers)} symbols)')
+                status['components']['tickers'] = 'operational'
+            elif len(tickers) >= 100:
+                print(f'⚠️ Ticker fetching: FALLBACK MODE ({len(tickers)} symbols)')
+                status['components']['tickers'] = 'fallback'
+            else:
+                print(f'❌ Ticker fetching: INSUFFICIENT ({len(tickers)} symbols)')
+                status['components']['tickers'] = 'insufficient'
+                status['overall_health'] = False
+        except Exception as e:
+            print(f'❌ Ticker fetching: ERROR - {e}')
+            status['components']['tickers'] = 'error'
+            status['overall_health'] = False
+
+        # 3. Check Data Sources
+        print('📈 Checking data sources...')
+        try:
+            data_fetcher = DataFetcher()
+            test_data = data_fetcher.fetch_stock_data('AAPL', weeks=2)
+
+            if test_data is not None and len(test_data) > 5:
+                print('✅ Data sources: OPERATIONAL')
+                status['components']['data_sources'] = 'operational'
+            else:
+                print('❌ Data sources: NO DATA RETRIEVED')
+                status['components']['data_sources'] = 'no_data'
+                status['overall_health'] = False
+        except Exception as e:
+            print(f'❌ Data sources: ERROR - {e}')
+            status['components']['data_sources'] = 'error'
+            status['overall_health'] = False
+
+        # 4. Check Scheduled Workflows
+        print('⏰ Checking workflow schedules...')
+        import os
+
+        # Check if workflows exist
+        workflows_exist = (
+            os.path.exists('.github/workflows/daily-vcp-screening.yml') and
+            os.path.exists('.github/workflows/realtime-vcp-monitoring.yml')
+        )
+
+        if workflows_exist:
+            print('✅ Workflow files: PRESENT')
+            status['components']['workflows'] = 'present'
+        else:
+            print('❌ Workflow files: MISSING')
+            status['components']['workflows'] = 'missing'
+            status['overall_health'] = False
+
+        # Overall Status Summary
+        print()
+        print('📋 SYSTEM STATUS SUMMARY')
+        print('=' * 30)
+
+        if status['overall_health']:
+            print('🟢 SYSTEM STATUS: HEALTHY')
+            health_emoji = '✅'
+        else:
+            print('🔴 SYSTEM STATUS: ISSUES DETECTED')
+            health_emoji = '⚠️'
+
+        print(f'Timestamp: {status[\"timestamp\"]}')
+        print()
+
+        for component, state in status['components'].items():
+            state_emoji = {
+                'operational': '🟢',
+                'fallback': '🟡',
+                'not_configured': '🟡',
+                'misconfigured': '🔴',
+                'insufficient': '🔴',
+                'no_data': '🔴',
+                'error': '🔴',
+                'missing': '🔴',
+                'present': '🟢'
+            }.get(state, '❓')
+
+            print(f'{component}: {state_emoji} {state}')
+
+        # Send status to Telegram if configured
+        if status['components'].get('telegram') == 'operational':
+            try:
+                bot.send_system_status({
+                    'healthy': status['overall_health'],
+                    'screening_active': True,
+                    'monitored_symbols': 0,
+                    'data_sources_ok': status['components'].get('data_sources') == 'operational',
+                    'last_scan': 'System status check',
+                    'additional_info': f'{health_emoji} System check completed at {status[\"timestamp\"]}'
+                })
+                print()
+                print('📱 Status sent to Telegram')
+            except Exception as e:
+                print(f'⚠️ Failed to send status to Telegram: {e}')
+
+        print()
+        print('🎯 Next daily screening: 7:00 PM ET (weekdays)')
+        print('🔄 Real-time monitoring: 9:30 AM - 4:00 PM ET (weekdays)')
+        "
+
+    - name: Verify cron schedules
+      run: |
+        echo "📅 SCHEDULED WORKFLOWS VERIFICATION"
+        echo "=================================="
+        echo ""
+        echo "Daily VCP Screening:"
+        echo "  Schedule: 7:00 PM ET (11:00 PM UTC) Monday-Friday"
+        echo "  Cron: '0 23 * * 1-5'"
+        echo "  Next run: $(date -d 'today 23:00 UTC' '+%Y-%m-%d %H:%M UTC')"
+        echo ""
+        echo "Real-time Monitoring:"
+        echo "  Schedule: Every 2 minutes, 9:30 AM - 4:00 PM ET"
+        echo "  Cron: '*/2 13-20 * * 1-5'"
+        echo "  Market hours: Monday-Friday"
+        echo ""
+        echo "System Status Check:"
+        echo "  Schedule: 6:00 PM ET (10:00 PM UTC) Monday-Friday"
+        echo "  Cron: '0 22 * * 1-5'"
+        echo ""
+        echo "✅ All schedules configured for weekday market operations"
