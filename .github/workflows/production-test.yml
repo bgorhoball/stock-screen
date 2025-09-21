@@ -121,7 +121,7 @@ jobs:
         fi
 
     - name: Upload production test artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: production-test-results-${{ github.run_number }}
         path: daily_reports/

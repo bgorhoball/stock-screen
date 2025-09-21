@@ -93,7 +93,7 @@ jobs:
           $MAX_SYMBOLS_FLAG
 
     - name: Upload screening reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: vcp-reports-${{ github.run_number }}
         path: daily_reports/
