@@ -2,36 +2,36 @@
 
 ## 📊 Summary
 - **Total symbols scanned:** 197
-- **VCP patterns detected:** 61
-- **Detection rate:** 30.96%
-- **Execution time:** 52.62 seconds
+- **VCP patterns detected:** 63
+- **Detection rate:** 31.98%
+- **Execution time:** 58.1 seconds
 
 ## 🎯 High-Confidence Matches
 
 | Symbol | Confidence | Contractions | Base Days | Volume Trend | Breakout |
 |--------|------------|--------------|-----------|--------------|----------|
-| CDNS | 1.00 | 3 | 40 | stable | ✅ |
 | WFC | 0.95 | 2 | 34 | decreasing | ✅ |
+| CDNS | 0.90 | 3 | 40 | stable | ✅ |
 | BIIB | 0.90 | 4 | 65 | stable | ✅ |
 | OXY | 0.90 | 3 | 53 | stable | ✅ |
 | ETN | 0.90 | 2 | 31 | stable | ✅ |
 | PCAR | 0.90 | 3 | 43 | stable | ✅ |
+| FOXA | 0.90 | 2 | 34 | stable | ✅ |
+| PLD | 0.90 | 2 | 42 | stable | ✅ |
+| O | 0.90 | 3 | 63 | stable | ✅ |
 | AAPL | 0.80 | 2 | 46 | stable | ✅ |
-| AMZN | 0.80 | 2 | 40 | stable | ✅ |
-| TSLA | 0.80 | 2 | 37 | stable | ✅ |
-| ORCL | 0.80 | 4 | 64 | increasing | ✅ |
 
 
 ## 📈 Pattern Analysis
-- **High confidence (≥0.8):** 38
-- **Medium confidence (0.5-0.8):** 79
-- **Breakouts detected:** 43
+- **High confidence (≥0.8):** 40
+- **Medium confidence (0.5-0.8):** 80
+- **Breakouts detected:** 48
 
 ## 📊 Volume Trends
-- **stable:** 100
-- **insufficient_contractions:** 71
-- **increasing:** 22
-- **decreasing:** 4
+- **stable:** 95
+- **insufficient_contractions:** 73
+- **increasing:** 24
+- **decreasing:** 5
 
 
 ---
