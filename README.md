@@ -112,25 +112,108 @@ python vcp_screen.py --max-symbols 20 --verbose
 python vcp_screen.py --output results/2024-01-15
 ```
 
+## 🤖 GitHub Actions Workflows
+
+The system includes 5 automated workflows for different purposes:
+
+### 1. **Daily VCP Screening** (`daily-vcp-screening.yml`)
+- **Schedule**: Monday-Friday at 7:00 PM ET (11:00 PM UTC)
+- **Purpose**: Scan all ~500 S&P 500 stocks for VCP patterns
+- **Manual Trigger**: Yes, with optional parameters
+- **Features**:
+  - Full S&P 500 screening in production mode
+  - Test mode with configurable symbol limits
+  - Automatic GitHub issue creation
+  - Telegram notifications
+  - Report artifacts with 30-day retention
+
+### 2. **Real-time VCP Monitoring** (`realtime-vcp-monitoring.yml`)
+- **Schedule**: Every 2 minutes during market hours (9:30 AM - 4:00 PM ET, Monday-Friday)
+- **Purpose**: Monitor VCP candidates for breakouts
+- **Manual Trigger**: Yes
+- **Features**:
+  - Monitors high-confidence VCP patterns from daily screening
+  - Instant Telegram alerts for breakouts
+  - Volume-confirmed breakout detection
+  - Automatic candidate management
+
+### 3. **VCP System Status Check** (`system-status.yml`)
+- **Schedule**: Monday-Friday at 6:00 PM ET (10:00 PM UTC)
+- **Purpose**: Health monitoring of all system components
+- **Manual Trigger**: Yes
+- **Features**:
+  - Telegram bot connectivity check
+  - Data source validation
+  - Workflow file verification
+  - System health Telegram notifications
+
+### 4. **Production VCP Screening Test** (`production-test.yml`)
+- **Schedule**: Manual trigger only
+- **Purpose**: Full S&P 500 testing with safety confirmation
+- **Manual Trigger**: Requires typing "CONFIRM"
+- **Features**:
+  - Complete production environment simulation
+  - 15-30 minute full S&P 500 scan
+  - Realistic VCP detection rate analysis
+  - Performance benchmarking
+
+### 5. **Test VCP Screening** (`test-vcp-screening.yml`)
+- **Schedule**: Triggered on push/PR to main/develop branches
+- **Purpose**: Development testing and CI/CD validation
+- **Manual Trigger**: No
+- **Features**:
+  - Component testing (ticker fetching, data pipeline, VCP detection)
+  - Limited symbol testing (10 stocks)
+  - Dependency validation
+  - Build verification
+
+### 🎯 **How to Use Workflows**
+
+**For Daily Operations** (Automatic):
+- Daily screening runs automatically at 7 PM ET
+- Real-time monitoring runs during market hours
+- System status checks run at 6 PM ET
+
+**For Testing** (Manual):
+```bash
+# Go to GitHub Actions tab in your repository
+# Select "Daily VCP Screening" → "Run workflow"
+# Configure parameters:
+- max_symbols: 10 (for testing)
+- dry_run: true (data only, no analysis)
+- force_production: false (test mode)
+```
+
+**For Full Production Test** (Manual):
+```bash
+# Go to GitHub Actions tab → "Production VCP Screening Test"
+# Type "CONFIRM" in the confirmation field
+# This will run a complete 500-stock screening
+```
+
 ## 📁 Project Structure
 
 ```
 stock-screen/
-├── src/                          # Core modules
-│   ├── ticker_fetcher.py        # S&P 500 ticker fetching
-│   ├── data_fetcher.py          # Historical data with failover
-│   ├── vcp_detector.py          # VCP pattern detection
-│   ├── report_generator.py      # Report generation
-│   └── notifications.py         # Multi-channel notifications
-├── .github/workflows/           # GitHub Actions
-│   ├── daily-vcp-screening.yml # Daily automated screening
-│   └── test-vcp-screening.yml  # Testing workflow
+├── src/                              # Core modules
+│   ├── ticker_fetcher.py            # S&P 500 ticker fetching
+│   ├── data_fetcher.py              # Historical data with failover
+│   ├── vcp_detector.py              # VCP pattern detection
+│   ├── report_generator.py          # Report generation
+│   ├── telegram_bot.py              # Telegram notifications
+│   └── finnhub_monitor.py           # Real-time monitoring
+├── .github/workflows/               # GitHub Actions (5 workflows)
+│   ├── daily-vcp-screening.yml     # Daily automated screening
+│   ├── realtime-vcp-monitoring.yml # Real-time breakout monitoring
+│   ├── system-status.yml           # Health monitoring
+│   ├── production-test.yml         # Full production testing
+│   └── test-vcp-screening.yml      # Development testing
 ├── config/
-│   └── config.yaml              # Configuration settings
-├── daily_reports/               # Generated reports
-├── vcp_screen.py               # Main screening script
-├── requirements.txt            # Python dependencies
-└── README.md                   # This file
+│   └── config.yaml                  # Configuration settings
+├── daily_reports/                   # Generated reports
+├── vcp_screen.py                   # Main screening script
+├── requirements.txt                # Python dependencies
+└── README.md                       # This file
 ```
 
 ## ⚙️ Configuration

@@ -88,16 +88,66 @@ python src/notifications.py
 
 ## GitHub Actions Workflows
 
-1. **Daily VCP Screening** (`.github/workflows/daily-vcp-screening.yml`)
-   - Scheduled: Monday-Friday at 7 PM ET (11 PM UTC)
-   - Manual trigger with parameters (max_symbols, dry_run)
-   - Generates artifacts, creates GitHub issues, sends notifications
-   - Commits daily reports to repository
+The system includes 5 automated workflows handling different aspects of VCP screening and monitoring:
 
-2. **Testing Workflow** (`.github/workflows/test-vcp-screening.yml`)
-   - Triggered on push/PR to main/develop branches
-   - Tests all components with limited symbol set
-   - Validates ticker fetching, data pipeline, and VCP detection
+### 1. **Daily VCP Screening** (`.github/workflows/daily-vcp-screening.yml`)
+   - **Schedule**: Monday-Friday at 7 PM ET (11 PM UTC) via cron: '0 23 * * 1-5'
+   - **Manual Trigger**: Yes, with workflow_dispatch inputs (max_symbols, dry_run, force_production)
+   - **Function**: Primary production workflow for daily S&P 500 screening
+   - **Features**:
+     - Production vs test mode detection based on trigger type
+     - Artifact generation with 30-day retention
+     - GitHub issue creation with formatted reports
+     - VCP candidate list updates for real-time monitoring
+     - Automatic repository commits for daily reports
+   - **Technical Notes**: Uses pip caching, handles both scheduled and manual execution
+
+### 2. **Real-time VCP Monitoring** (`.github/workflows/realtime-vcp-monitoring.yml`)
+   - **Schedule**: Every 2 minutes during market hours via cron: '*/2 13-20 * * 1-5'
+   - **Manual Trigger**: Yes, for testing monitoring functionality
+   - **Function**: Real-time breakout detection for VCP candidates
+   - **Features**:
+     - Market hours validation (9:30 AM - 4:00 PM ET)
+     - Finnhub API integration for real-time data
+     - Volume-confirmed breakout detection
+     - Instant Telegram alerts for trading opportunities
+     - Automatic candidate management and cleanup
+   - **Technical Notes**: Efficient API usage (60 calls/minute handles 20+ symbols)
+
+### 3. **VCP System Status Check** (`.github/workflows/system-status.yml`)
+   - **Schedule**: Monday-Friday at 6 PM ET (10 PM UTC) via cron: '0 22 * * 1-5'
+   - **Manual Trigger**: Yes, for on-demand health checks
+   - **Function**: Comprehensive system health monitoring
+   - **Features**:
+     - Telegram bot connectivity validation
+     - Data source availability testing (yfinance, Alpha Vantage)
+     - Ticker fetching reliability assessment
+     - Workflow file presence verification
+     - Health status Telegram notifications
+   - **Technical Notes**: Pre-screening validation ensures reliable daily operations
+
+### 4. **Production VCP Screening Test** (`.github/workflows/production-test.yml`)
+   - **Schedule**: Manual trigger only with safety confirmation
+   - **Manual Trigger**: Requires typing "CONFIRM" to prevent accidental execution
+   - **Function**: Full production environment testing and benchmarking
+   - **Features**:
+     - Complete S&P 500 screening simulation (15-30 minutes)
+     - Performance timing and analysis
+     - Detection rate validation (expected 0.5-5%)
+     - Artifact upload for detailed analysis
+     - Production readiness verification
+   - **Technical Notes**: Includes system dependencies installation for CI environment
+
+### 5. **Test VCP Screening** (`.github/workflows/test-vcp-screening.yml`)
+   - **Schedule**: Triggered on push/PR to main/develop branches
+   - **Manual Trigger**: No (CI/CD only)
+   - **Function**: Development testing and continuous integration
+   - **Features**:
+     - Component-level testing (ticker fetcher, data pipeline, VCP detector)
+     - Limited symbol testing (10 stocks) for efficiency
+     - Dependency validation and error handling testing
+     - Build verification and code quality checks
+   - **Technical Notes**: Includes system dependency installation (libxml2-dev, libxslt-dev)
 
 ## Configuration System
 
