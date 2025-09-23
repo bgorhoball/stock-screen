@@ -151,66 +151,66 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: |
-        python3 -c "
-import sys
-sys.path.append('src')
-from telegram_bot import TelegramBot
-import os
-from datetime import datetime
-import glob
+        python3 << 'EOF'
+        import sys
+        sys.path.append('src')
+        from telegram_bot import TelegramBot
+        import os
+        from datetime import datetime
+        import glob
 
-bot = TelegramBot()
-if not bot.enabled:
-    print('Telegram bot not configured')
-    exit(0)
+        bot = TelegramBot()
+        if not bot.enabled:
+            print('Telegram bot not configured')
+            exit(0)
 
-# Create backtest summary message
-message = '📊 Weekly VCP Strategy Backtest\\n'
-message += f'Date: {datetime.now().strftime(\"%Y-%m-%d %H:%M UTC\")}\\n\\n'
+        # Create backtest summary message
+        message = '📊 Weekly VCP Strategy Backtest\\n'
+        message += f'Date: {datetime.now().strftime(\"%Y-%m-%d %H:%M UTC\")}\\n\\n'
 
-# Check for results
-html_reports = glob.glob('backtest_reports/*.html')
+        # Check for results
+        html_reports = glob.glob('backtest_reports/*.html')
 
-if html_reports:
-    message += f'✅ Backtest completed successfully\\n'
-    message += f'📄 Generated {len(html_reports)} reports\\n\\n'
+        if html_reports:
+            message += f'✅ Backtest completed successfully\\n'
+            message += f'📄 Generated {len(html_reports)} reports\\n\\n'
 
-    # Try to extract basic metrics from log
-    try:
-        with open('backtest.log', 'r') as f:
-            log_content = f.read()
+            # Try to extract basic metrics from log
+            try:
+                with open('backtest.log', 'r') as f:
+                    log_content = f.read()
 
-        # Look for key metrics in log
-        lines = log_content.split('\\n')
-        metrics_found = False
+                # Look for key metrics in log
+                lines = log_content.split('\\n')
+                metrics_found = False
 
-        for line in lines:
-            if 'Total Return:' in line:
-                message += f'📈 {line.strip()}\\n'
-                metrics_found = True
-            elif 'Win Rate:' in line:
-                message += f'🎯 {line.strip()}\\n'
-                metrics_found = True
-            elif 'Sharpe Ratio:' in line:
-                message += f'📊 {line.strip()}\\n'
-                metrics_found = True
+                for line in lines:
+                    if 'Total Return:' in line:
+                        message += f'📈 {line.strip()}\\n'
+                        metrics_found = True
+                    elif 'Win Rate:' in line:
+                        message += f'🎯 {line.strip()}\\n'
+                        metrics_found = True
+                    elif 'Sharpe Ratio:' in line:
+                        message += f'📊 {line.strip()}\\n'
+                        metrics_found = True
 
-        if not metrics_found:
-            message += '📋 Detailed metrics available in reports\\n'
+                if not metrics_found:
+                    message += '📋 Detailed metrics available in reports\\n'
 
-    except Exception as e:
-        message += f'⚠️ Could not extract metrics: {e}\\n'
-else:
-    message += '❌ Backtest failed - no reports generated\\n'
+            except Exception as e:
+                message += f'⚠️ Could not extract metrics: {e}\\n'
+        else:
+            message += '❌ Backtest failed - no reports generated\\n'
 
-message += '\\n🔗 Check GitHub Actions for detailed results'
+        message += '\\n🔗 Check GitHub Actions for detailed results'
 
-try:
-    success = bot.send_message(message)
-    print(f'Telegram notification sent: {success}')
-except Exception as e:
-    print(f'Error sending Telegram notification: {e}')
-"
+        try:
+            success = bot.send_message(message)
+            print(f'Telegram notification sent: {success}')
+        except Exception as e:
+            print(f'Error sending Telegram notification: {e}')
+        EOF
 
     - name: Upload backtest artifacts
       uses: actions/upload-artifact@v4
