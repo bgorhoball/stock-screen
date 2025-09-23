@@ -154,7 +154,7 @@ jobs:
 
           except Exception as e:
               print(f'Error analyzing portfolio: {e}')
-          EOF
+        EOF
         else
           echo "⚠️ No portfolio state file found"
         fi
