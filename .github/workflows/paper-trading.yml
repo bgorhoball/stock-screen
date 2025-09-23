@@ -267,7 +267,7 @@ jobs:
             print(f'Paper trading summary sent: {success}')
         except Exception as e:
             print(f'Error sending summary: {e}')
-EOF
+        EOF
 
     - name: Save paper trading state
       run: |
