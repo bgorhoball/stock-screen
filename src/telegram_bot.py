@@ -299,6 +299,19 @@ Your private VCP screening notifications are ready to go! 🚀"""
         message = TelegramMessage(text=message_text)
         return self._send_message(message)
 
+    def send_message(self, text: str) -> bool:
+        """
+        Send generic text message to Telegram chat.
+
+        Args:
+            text: Message text to send
+
+        Returns:
+            True if message sent successfully
+        """
+        message = TelegramMessage(text=text)
+        return self._send_message(message)
+
     def get_bot_info(self) -> Optional[Dict]:
         """
         Get information about the bot.
