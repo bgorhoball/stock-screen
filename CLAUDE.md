@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an automated daily S&P 500 VCP (Volatility Contraction Pattern) screening system that identifies stocks matching Mark Minervini's technical criteria. The system uses free market data APIs and open-source tools to generate daily reports of potential trading opportunities.
+This is an automated daily S&P 500 VCP (Volatility Contraction Pattern) screening system that identifies stocks matching Mark Minervini's technical criteria. The system uses free market data APIs and open-source tools to generate daily reports, perform real-time breakout monitoring, execute paper trading simulations, and conduct weekly strategy backtests.
 
 ## Architecture
 
@@ -12,9 +12,12 @@ The system follows a modular architecture:
 
 - **Data Layer**: Fetches S&P 500 ticker lists and historical price/volume data using free APIs (yfinance primary, Alpha Vantage fallback)
 - **Pattern Detection**: Implements VCP screening logic to identify progressive price contractions with volume analysis
+- **Real-time Monitoring**: Finnhub API integration for breakout detection during market hours
+- **Paper Trading**: Simulated trading system with portfolio tracking and performance analysis
+- **Backtesting**: Weekly strategy validation using historical data
 - **Reporting**: Generates daily CSV reports, JSON summaries, and GitHub issues with matched tickers and pattern statistics
-- **Automation**: GitHub Actions workflow for scheduled execution with multi-channel notifications
-- **Notifications**: Integrated Slack, Discord, GitHub Issues, and email reporting
+- **Automation**: Comprehensive GitHub Actions workflows for scheduled execution
+- **Notifications**: Integrated Telegram bot for real-time alerts and daily summaries
 
 ## Key Components
 
@@ -48,11 +51,38 @@ The system follows a modular architecture:
    - Email content generation (HTML format)
    - Multi-channel notification coordination
 
-6. **Main Screening Script** (`vcp_screen.py`)
-   - Command-line interface with multiple options
-   - Configuration management via YAML
-   - Progress tracking and error handling
-   - Integration of all components
+6. **Telegram Bot Integration** (`src/telegram_bot.py`)
+   - Private bot for VCP screening notifications
+   - Real-time breakout alerts with volume confirmation
+   - Daily screening summaries with top matches
+   - Paper trading progress reports
+   - Weekly backtest result notifications
+   - System health and error alerts
+
+7. **Paper Trading System** (`paper_trader.py`)
+   - Simulated portfolio management with $100,000 initial capital
+   - VCP-based entry signals from daily screening
+   - Risk management with stop-loss and position sizing
+   - Performance tracking and trade logging
+   - Watchlist management for potential opportunities
+
+8. **Strategy Backtesting** (`run_backtest.py`)
+   - Historical VCP strategy validation
+   - Configurable time periods and symbol sets
+   - Performance metrics calculation (returns, Sharpe ratio, drawdown)
+   - HTML report generation with detailed analysis
+
+9. **External Script System** (`scripts/`)
+   - `analyze_portfolio.py`: Paper trading portfolio analysis
+   - `send_telegram.py`: Paper trading Telegram notifications
+   - `send_backtest_telegram.py`: Weekly backtest result notifications
+   - Resolves GitHub Actions YAML/Python integration issues
+
+10. **Main Screening Script** (`vcp_screen.py`)
+    - Command-line interface with multiple options
+    - Configuration management via YAML
+    - Progress tracking and error handling
+    - Integration of all components
 
 ## Development Commands
 
@@ -84,11 +114,21 @@ python src/data_fetcher.py
 python src/vcp_detector.py
 python src/report_generator.py
 python src/notifications.py
+python src/telegram_bot.py
+
+# Paper trading commands
+python paper_trader.py --mode single --verbose
+python paper_trader.py --mode report
+python scripts/analyze_portfolio.py
+
+# Backtest commands
+python run_backtest.py --symbols sp500 --start-date 2022-01-01 --end-date 2024-01-01
+python run_backtest.py --symbols vcp_candidates --backtest-years 2 --verbose
 ```
 
 ## GitHub Actions Workflows
 
-The system includes 5 automated workflows handling different aspects of VCP screening and monitoring:
+The system includes 7 automated workflows handling different aspects of VCP screening, monitoring, paper trading, and backtesting:
 
 ### 1. **Daily VCP Screening** (`.github/workflows/daily-vcp-screening.yml`)
    - **Schedule**: Monday-Friday at 7 PM ET (11 PM UTC) via cron: '0 23 * * 1-5'
@@ -149,6 +189,32 @@ The system includes 5 automated workflows handling different aspects of VCP scre
      - Build verification and code quality checks
    - **Technical Notes**: Includes system dependency installation (libxml2-dev, libxslt-dev)
 
+### 6. **Paper Trading Simulation** (`.github/workflows/paper-trading.yml`)
+   - **Schedule**: Monday-Friday at 7:30 PM ET (11:30 PM UTC) via cron: '30 23 * * 1-5'
+   - **Manual Trigger**: Yes, with options for single/report mode and portfolio reset
+   - **Function**: Automated paper trading using VCP candidates from daily screening
+   - **Features**:
+     - $100,000 simulated portfolio with realistic trade execution
+     - VCP-based entry signals from daily screening results
+     - Risk management with stop-loss and position sizing rules
+     - Daily Telegram notifications with portfolio performance
+     - Portfolio state persistence between runs
+     - Trade logging and performance analytics
+   - **Technical Notes**: Uses external scripts to avoid YAML/Python syntax conflicts
+
+### 7. **Weekly VCP Strategy Backtest** (`.github/workflows/weekly-backtest.yml`)
+   - **Schedule**: Every Sunday at 6:00 PM ET (10:00 PM UTC) via cron: '0 22 * * 0'
+   - **Manual Trigger**: Yes, with configurable symbol sources, time periods, and confidence thresholds
+   - **Function**: Historical validation of VCP strategy performance
+   - **Features**:
+     - Configurable backtest periods (1-5 years)
+     - Multiple symbol sources (S&P 500, top 100, VCP candidates)
+     - Performance metrics calculation (returns, Sharpe ratio, drawdown)
+     - HTML report generation with detailed trade analysis
+     - Weekly results archival and Telegram notifications
+     - Automatic cleanup of old results (28-day retention)
+   - **Technical Notes**: External script pattern for Telegram notifications
+
 ## Configuration System
 
 **Main Config** (`config/config.yaml`):
@@ -159,8 +225,11 @@ The system includes 5 automated workflows handling different aspects of VCP scre
 
 **Environment Variables** (`.env`):
 - `ALPHA_VANTAGE_API_KEY`: Optional API key for data fallback
-- `SLACK_WEBHOOK_URL`: Slack notification webhook
-- `DISCORD_WEBHOOK_URL`: Discord notification webhook
+- `FINNHUB_API_KEY`: Required for real-time monitoring (60 calls/minute free)
+- `TELEGRAM_BOT_TOKEN`: Private Telegram bot token for notifications
+- `TELEGRAM_CHAT_ID`: Target chat ID for Telegram messages
+- `SLACK_WEBHOOK_URL`: Slack notification webhook (legacy)
+- `DISCORD_WEBHOOK_URL`: Discord notification webhook (legacy)
 
 ## VCP Pattern Implementation
 
@@ -183,7 +252,9 @@ The system includes 5 automated workflows handling different aspects of VCP scre
 **Free API Limits**:
 - yfinance: Unlimited but subject to rate limiting/blocks
 - Alpha Vantage: 500 requests/day, 5 requests/minute
+- Finnhub: 60 calls/minute free tier for real-time data
 - Data requirement: 12 weeks of daily OHLCV for 500+ symbols
+- Real-time monitoring: 20+ symbols within rate limits
 
 **GitHub Actions Constraints**:
 - 6-hour job timeout (sufficient for full S&P 500 screening)
@@ -206,9 +277,12 @@ The system includes 5 automated workflows handling different aspects of VCP scre
 - Progress tracking for large symbol sets
 
 **Notifications**:
+- Primary: Telegram bot with comprehensive message formatting
 - Multiple channel support with independent failure handling
 - Webhook validation and retry logic
 - Fallback to GitHub issues if external notifications fail
+- Real-time breakout alerts with volume confirmation
+- Daily summaries with top VCP matches and system status
 
 ## Testing and Validation
 
@@ -254,6 +328,77 @@ python -c "import yfinance as yf; from src.vcp_detector import VCPDetector; data
 - Quarterly update of static ticker fallback list
 - Semi-annual review of VCP parameter effectiveness
 
+## External Script Architecture
+
+**Problem Solved**: GitHub Actions YAML workflows cannot embed Python scripts using heredoc syntax due to conflicts between YAML indentation rules and bash script requirements (EOF markers must be at column 1).
+
+**Solution**: External Python scripts in `scripts/` directory called by workflows:
+- `scripts/analyze_portfolio.py`: Paper trading portfolio metrics and reporting
+- `scripts/send_telegram.py`: Paper trading daily summary notifications
+- `scripts/send_backtest_telegram.py`: Weekly backtest result notifications
+
+**Benefits**:
+- Eliminates f-string syntax errors with backslash characters
+- Proper Python syntax highlighting and error detection
+- Cleaner separation between workflow definition and script logic
+- Easier testing and debugging of individual components
+- Follows GitHub Actions best practices
+
+**Implementation Pattern**:
+```yaml
+# Instead of:
+- name: Send notification
+  run: |
+    python3 << 'EOF'
+    # Complex Python script with potential syntax issues
+    EOF
+
+# Use:
+- name: Send notification
+  run: |
+    python3 scripts/send_notification.py
+```
+
+## Paper Trading System
+
+**Portfolio Management**:
+- Initial capital: $100,000 simulated
+- State persistence: JSON files for portfolio, watchlist, and alerts
+- Position sizing: Risk-based allocation per trade
+- Stop-loss management: Automatic exit on adverse moves
+
+**Trading Logic**:
+- Entry signals: High-confidence VCP breakouts from daily screening
+- Exit signals: Stop-loss triggers, profit targets, pattern invalidation
+- Watchlist management: Track potential opportunities
+- Performance tracking: Trade-by-trade logging with metrics
+
+**Reporting**:
+- Daily portfolio summaries via Telegram
+- Trade execution logs with entry/exit details
+- Performance analytics (returns, win rate, drawdown)
+- Position monitoring and unrealized P&L tracking
+
+## Telegram Bot Integration
+
+**TelegramBot Class** (`src/telegram_bot.py`):
+- Private bot configuration with token and chat ID
+- Message formatting with Markdown support
+- Rate limiting and error handling
+- Multiple notification types:
+  - Daily VCP screening summaries
+  - Real-time breakout alerts
+  - Paper trading progress reports
+  - Weekly backtest results
+  - System health notifications
+
+**Key Methods**:
+- `send_message(text)`: Generic text message sending
+- `send_daily_screening_report()`: Formatted daily VCP results
+- `send_breakout_alert()`: Real-time trading opportunities
+- `send_system_status()`: Health monitoring updates
+- `validate_configuration()`: Bot connectivity testing
+
 ## Integration Notes
 
 **Existing Open-Source VCP Implementations**:
@@ -264,7 +409,16 @@ python -c "import yfinance as yf; from src.vcp_detector import VCPDetector; data
 **Market Data Ecosystem**:
 - yfinance for broad compatibility and ease of use
 - Alpha Vantage for enterprise-grade fallback data
+- Finnhub for real-time market data during trading hours
 - Wikipedia for dynamic S&P 500 constituent updates
 - Multiple data validation layers for production reliability
 
-This system represents a production-ready implementation of automated VCP screening suitable for daily operation with minimal maintenance requirements.
+**Production Architecture**:
+- 7 GitHub Actions workflows for comprehensive automation
+- External script pattern for reliable workflow execution
+- Telegram bot integration for real-time notifications
+- Paper trading simulation with realistic portfolio management
+- Weekly backtesting for strategy validation
+- Comprehensive error handling and monitoring
+
+This system represents a production-ready implementation of automated VCP screening with paper trading simulation and strategy backtesting, suitable for daily operation with minimal maintenance requirements.
