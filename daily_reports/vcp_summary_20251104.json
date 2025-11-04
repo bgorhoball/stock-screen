@@ -1,0 +1,22 @@
+{
+  "scan_date": "2025-11-04 23:11:22",
+  "execution_time_seconds": 66.84,
+  "total_symbols_scanned": 198,
+  "symbols_with_data": 199,
+  "vcp_patterns_detected": 68,
+  "vcp_detection_rate": 34.34,
+  "high_confidence_matches": 55,
+  "medium_confidence_matches": 87,
+  "breakouts_detected": 70,
+  "volume_trend_distribution": {
+    "insufficient_contractions": 47,
+    "stable": 114,
+    "increasing": 32,
+    "decreasing": 5
+  },
+  "avg_data_points_per_symbol": 58.6,
+  "data_date_range": {
+    "earliest": "2025-08-13",
+    "latest": "2025-11-04"
+  }
+}
