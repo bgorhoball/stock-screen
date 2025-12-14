@@ -1,0 +1,788 @@
+2025-12-14 22:12:30,572 - INFO - Starting backtest: 8 symbols, 2023-12-14 to 2025-12-14
+2025-12-14 22:12:30,572 - DEBUG - Entering history()
+2025-12-14 22:12:30,576 - DEBUG - ('CREATE TABLE IF NOT EXISTS "_tz_kv" ("key" VARCHAR(255) NOT NULL PRIMARY KEY, "value" VARCHAR(255)) WITHOUT ROWID', [])
+2025-12-14 22:12:30,578 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['SPY', 1, 0])
+2025-12-14 22:12:30,578 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:30,578 - DEBUG -   Entering get()
+2025-12-14 22:12:30,579 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:30,579 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/SPY
+2025-12-14 22:12:30,579 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:30,579 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:30,579 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:30,579 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:30,579 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:30,579 - DEBUG -        Entering _load_cookie_curlCffi()
+2025-12-14 22:12:30,581 - DEBUG - ('CREATE TABLE IF NOT EXISTS "_cookieschema" ("strategy" VARCHAR(255) NOT NULL PRIMARY KEY, "fetch_date" DATETIME NOT NULL, "cookie_bytes" BLOB NOT NULL) WITHOUT ROWID', [])
+2025-12-14 22:12:30,583 - DEBUG - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-12-14 22:12:30,583 - DEBUG -        Exiting _load_cookie_curlCffi()
+2025-12-14 22:12:30,745 - DEBUG -        Entering _save_cookie_curlCffi()
+2025-12-14 22:12:30,745 - DEBUG - ('DELETE FROM "_cookieschema" WHERE ("_cookieschema"."strategy" = ?)', ['curlCffi'])
+2025-12-14 22:12:30,746 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:30,746 - DEBUG - ('INSERT INTO "_cookieschema" ("strategy", "fetch_date", "cookie_bytes") VALUES (?, ?, ?)', ['curlCffi', '2025-12-14T22:12:30.746353', <memory at 0x7fdf49d45e40>])
+2025-12-14 22:12:30,747 - DEBUG -        Exiting _save_cookie_curlCffi()
+2025-12-14 22:12:30,747 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:30,747 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:30,747 - DEBUG -        Entering _get_cookie_basic()
+2025-12-14 22:12:30,747 - DEBUG -         Entering _load_cookie_curlCffi()
+2025-12-14 22:12:30,747 - DEBUG - ('SELECT "t1"."strategy", "t1"."fetch_date", "t1"."cookie_bytes" FROM "_cookieschema" AS "t1" WHERE ("t1"."strategy" = ?) LIMIT ? OFFSET ?', ['curlCffi', 1, 0])
+2025-12-14 22:12:30,747 - DEBUG -         Exiting _load_cookie_curlCffi()
+2025-12-14 22:12:30,747 - DEBUG - reusing persistent cookie
+2025-12-14 22:12:30,748 - DEBUG -        Exiting _get_cookie_basic()
+2025-12-14 22:12:30,943 - DEBUG - crumb = 'Ere4KAm3vh9'
+2025-12-14 22:12:30,943 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:30,943 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:30,944 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,169 - DEBUG - response code=200
+2025-12-14 22:12:31,170 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,170 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,170 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:31,181 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:31,181 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['SPY', 'America/New_York'])
+2025-12-14 22:12:31,182 - DEBUG -  Entering history()
+2025-12-14 22:12:31,183 - DEBUG - SPY: Yahoo GET parameters: {'period1': '2023-11-19 22:12:30-05:00', 'period2': '2025-12-14 22:12:30-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,184 - DEBUG -   Entering get()
+2025-12-14 22:12:31,184 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:31,184 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/SPY
+2025-12-14 22:12:31,184 - DEBUG - params={'period1': 1700449950, 'period2': 1765768350, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,184 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:31,184 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:31,184 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,184 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:31,184 - DEBUG - reusing cookie
+2025-12-14 22:12:31,184 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:31,184 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:31,184 - DEBUG - reusing crumb
+2025-12-14 22:12:31,184 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:31,184 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,184 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,323 - DEBUG - response code=200
+2025-12-14 22:12:31,323 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,323 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,326 - DEBUG - SPY: yfinance received OHLC data: 2023-11-20 14:30:00 -> 2025-12-12 21:00:00
+2025-12-14 22:12:31,327 - DEBUG - SPY: OHLC after cleaning: 2023-11-20 09:30:00-05:00 -> 2025-12-12 16:00:00-05:00
+2025-12-14 22:12:31,334 - DEBUG - SPY: OHLC after combining events: 2023-11-20 00:00:00-05:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:31,338 - DEBUG - SPY: yfinance returning OHLC: 2023-11-20 00:00:00-05:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:31,338 - DEBUG -  Exiting history()
+2025-12-14 22:12:31,339 - DEBUG - Exiting history()
+2025-12-14 22:12:31,339 - DEBUG - Fetched 518 days of data for SPY from yfinance
+2025-12-14 22:12:31,340 - INFO - Fetching historical data...
+2025-12-14 22:12:31,340 - DEBUG - Entering history()
+2025-12-14 22:12:31,340 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['CDNS', 1, 0])
+2025-12-14 22:12:31,341 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:31,341 - DEBUG -   Entering get()
+2025-12-14 22:12:31,341 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:31,341 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/CDNS
+2025-12-14 22:12:31,341 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:31,341 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:31,341 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:31,341 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,341 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:31,341 - DEBUG - reusing cookie
+2025-12-14 22:12:31,341 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:31,341 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:31,341 - DEBUG - reusing crumb
+2025-12-14 22:12:31,341 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:31,342 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,342 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,423 - DEBUG - response code=200
+2025-12-14 22:12:31,423 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,423 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,423 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:31,423 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:31,423 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['CDNS', 'America/New_York'])
+2025-12-14 22:12:31,424 - DEBUG -  Entering history()
+2025-12-14 22:12:31,425 - DEBUG - CDNS: Yahoo GET parameters: {'period1': '2023-09-24 22:12:31-04:00', 'period2': '2025-12-14 22:12:31-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,425 - DEBUG -   Entering get()
+2025-12-14 22:12:31,425 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:31,425 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/CDNS
+2025-12-14 22:12:31,425 - DEBUG - params={'period1': 1695607951, 'period2': 1765768351, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,425 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:31,425 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:31,425 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,425 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:31,425 - DEBUG - reusing cookie
+2025-12-14 22:12:31,425 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:31,425 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:31,426 - DEBUG - reusing crumb
+2025-12-14 22:12:31,426 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:31,426 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,426 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,495 - DEBUG - response code=200
+2025-12-14 22:12:31,495 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,495 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,498 - DEBUG - CDNS: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:02
+2025-12-14 22:12:31,499 - DEBUG - CDNS: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:02-05:00
+2025-12-14 22:12:31,501 - DEBUG - CDNS: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:31,505 - DEBUG - CDNS: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:31,506 - DEBUG -  Exiting history()
+2025-12-14 22:12:31,506 - DEBUG - Exiting history()
+2025-12-14 22:12:31,506 - DEBUG - Fetched 558 days of data for CDNS from yfinance
+2025-12-14 22:12:31,507 - DEBUG - Entering history()
+2025-12-14 22:12:31,507 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['WFC', 1, 0])
+2025-12-14 22:12:31,508 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:31,508 - DEBUG -   Entering get()
+2025-12-14 22:12:31,508 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:31,508 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/WFC
+2025-12-14 22:12:31,508 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:31,508 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:31,508 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:31,508 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,508 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:31,508 - DEBUG - reusing cookie
+2025-12-14 22:12:31,508 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:31,508 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:31,508 - DEBUG - reusing crumb
+2025-12-14 22:12:31,508 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:31,508 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,508 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,635 - DEBUG - response code=200
+2025-12-14 22:12:31,635 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,636 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,636 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:31,636 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:31,636 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['WFC', 'America/New_York'])
+2025-12-14 22:12:31,637 - DEBUG -  Entering history()
+2025-12-14 22:12:31,638 - DEBUG - WFC: Yahoo GET parameters: {'period1': '2023-09-24 22:12:31-04:00', 'period2': '2025-12-14 22:12:31-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,638 - DEBUG -   Entering get()
+2025-12-14 22:12:31,638 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:31,638 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/WFC
+2025-12-14 22:12:31,638 - DEBUG - params={'period1': 1695607951, 'period2': 1765768351, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,638 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:31,638 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:31,638 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,638 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:31,638 - DEBUG - reusing cookie
+2025-12-14 22:12:31,638 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:31,638 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:31,638 - DEBUG - reusing crumb
+2025-12-14 22:12:31,638 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:31,638 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,639 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,772 - DEBUG - response code=200
+2025-12-14 22:12:31,772 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,772 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,775 - DEBUG - WFC: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:02
+2025-12-14 22:12:31,775 - DEBUG - WFC: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:02-05:00
+2025-12-14 22:12:31,781 - DEBUG - WFC: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:31,785 - DEBUG - WFC: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:31,785 - DEBUG -  Exiting history()
+2025-12-14 22:12:31,785 - DEBUG - Exiting history()
+2025-12-14 22:12:31,786 - DEBUG - Fetched 558 days of data for WFC from yfinance
+2025-12-14 22:12:31,786 - DEBUG - Entering history()
+2025-12-14 22:12:31,787 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['BIIB', 1, 0])
+2025-12-14 22:12:31,787 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:31,787 - DEBUG -   Entering get()
+2025-12-14 22:12:31,787 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:31,787 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/BIIB
+2025-12-14 22:12:31,787 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:31,787 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:31,788 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:31,788 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,788 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:31,788 - DEBUG - reusing cookie
+2025-12-14 22:12:31,788 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:31,788 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:31,788 - DEBUG - reusing crumb
+2025-12-14 22:12:31,788 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:31,788 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,788 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,871 - DEBUG - response code=200
+2025-12-14 22:12:31,872 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,872 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,872 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:31,872 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:31,872 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['BIIB', 'America/New_York'])
+2025-12-14 22:12:31,873 - DEBUG -  Entering history()
+2025-12-14 22:12:31,873 - DEBUG - BIIB: Yahoo GET parameters: {'period1': '2023-09-24 22:12:31-04:00', 'period2': '2025-12-14 22:12:31-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,874 - DEBUG -   Entering get()
+2025-12-14 22:12:31,874 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:31,874 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/BIIB
+2025-12-14 22:12:31,874 - DEBUG - params={'period1': 1695607951, 'period2': 1765768351, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:31,874 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:31,874 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:31,874 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,874 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:31,874 - DEBUG - reusing cookie
+2025-12-14 22:12:31,874 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:31,874 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:31,874 - DEBUG - reusing crumb
+2025-12-14 22:12:31,874 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:31,874 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:31,874 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:31,994 - DEBUG - response code=200
+2025-12-14 22:12:31,994 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:31,994 - DEBUG -   Exiting get()
+2025-12-14 22:12:31,997 - DEBUG - BIIB: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:01
+2025-12-14 22:12:31,997 - DEBUG - BIIB: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:01-05:00
+2025-12-14 22:12:32,000 - DEBUG - BIIB: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:32,004 - DEBUG - BIIB: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:32,004 - DEBUG -  Exiting history()
+2025-12-14 22:12:32,004 - DEBUG - Exiting history()
+2025-12-14 22:12:32,005 - DEBUG - Fetched 558 days of data for BIIB from yfinance
+2025-12-14 22:12:32,005 - DEBUG - Entering history()
+2025-12-14 22:12:32,006 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['OXY', 1, 0])
+2025-12-14 22:12:32,006 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:32,006 - DEBUG -   Entering get()
+2025-12-14 22:12:32,006 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:32,006 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/OXY
+2025-12-14 22:12:32,006 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:32,006 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:32,006 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:32,006 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,006 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:32,006 - DEBUG - reusing cookie
+2025-12-14 22:12:32,006 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:32,007 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:32,007 - DEBUG - reusing crumb
+2025-12-14 22:12:32,007 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:32,007 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,007 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:32,145 - DEBUG - response code=200
+2025-12-14 22:12:32,145 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:32,145 - DEBUG -   Exiting get()
+2025-12-14 22:12:32,145 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:32,145 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:32,145 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['OXY', 'America/New_York'])
+2025-12-14 22:12:32,146 - DEBUG -  Entering history()
+2025-12-14 22:12:32,146 - DEBUG - OXY: Yahoo GET parameters: {'period1': '2023-09-24 22:12:32-04:00', 'period2': '2025-12-14 22:12:32-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:32,146 - DEBUG -   Entering get()
+2025-12-14 22:12:32,147 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:32,147 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/OXY
+2025-12-14 22:12:32,147 - DEBUG - params={'period1': 1695607952, 'period2': 1765768352, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:32,147 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:32,147 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:32,147 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,147 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:32,147 - DEBUG - reusing cookie
+2025-12-14 22:12:32,147 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:32,147 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:32,147 - DEBUG - reusing crumb
+2025-12-14 22:12:32,147 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:32,147 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,147 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:32,319 - DEBUG - response code=200
+2025-12-14 22:12:32,319 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:32,319 - DEBUG -   Exiting get()
+2025-12-14 22:12:32,322 - DEBUG - OXY: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:02
+2025-12-14 22:12:32,322 - DEBUG - OXY: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:02-05:00
+2025-12-14 22:12:32,329 - DEBUG - OXY: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:32,332 - DEBUG - OXY: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:32,332 - DEBUG -  Exiting history()
+2025-12-14 22:12:32,333 - DEBUG - Exiting history()
+2025-12-14 22:12:32,333 - DEBUG - Fetched 558 days of data for OXY from yfinance
+2025-12-14 22:12:32,334 - DEBUG - Entering history()
+2025-12-14 22:12:32,334 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['ETN', 1, 0])
+2025-12-14 22:12:32,334 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:32,334 - DEBUG -   Entering get()
+2025-12-14 22:12:32,334 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:32,334 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/ETN
+2025-12-14 22:12:32,334 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:32,335 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:32,335 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:32,335 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,335 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:32,335 - DEBUG - reusing cookie
+2025-12-14 22:12:32,335 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:32,335 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:32,335 - DEBUG - reusing crumb
+2025-12-14 22:12:32,335 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:32,335 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,335 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:32,474 - DEBUG - response code=200
+2025-12-14 22:12:32,474 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:32,474 - DEBUG -   Exiting get()
+2025-12-14 22:12:32,474 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:32,474 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:32,475 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['ETN', 'America/New_York'])
+2025-12-14 22:12:32,476 - DEBUG -  Entering history()
+2025-12-14 22:12:32,476 - DEBUG - ETN: Yahoo GET parameters: {'period1': '2023-09-24 22:12:32-04:00', 'period2': '2025-12-14 22:12:32-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:32,476 - DEBUG -   Entering get()
+2025-12-14 22:12:32,476 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:32,476 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/ETN
+2025-12-14 22:12:32,476 - DEBUG - params={'period1': 1695607952, 'period2': 1765768352, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:32,476 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:32,476 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:32,476 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,476 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:32,477 - DEBUG - reusing cookie
+2025-12-14 22:12:32,477 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:32,477 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:32,477 - DEBUG - reusing crumb
+2025-12-14 22:12:32,477 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:32,477 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,477 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:32,627 - DEBUG - response code=200
+2025-12-14 22:12:32,627 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:32,627 - DEBUG -   Exiting get()
+2025-12-14 22:12:32,629 - DEBUG - ETN: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:02
+2025-12-14 22:12:32,631 - DEBUG - ETN: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:02-05:00
+2025-12-14 22:12:32,637 - DEBUG - ETN: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:32,641 - DEBUG - ETN: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:32,641 - DEBUG -  Exiting history()
+2025-12-14 22:12:32,641 - DEBUG - Exiting history()
+2025-12-14 22:12:32,642 - DEBUG - Fetched 558 days of data for ETN from yfinance
+2025-12-14 22:12:32,642 - DEBUG - Entering history()
+2025-12-14 22:12:32,643 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['PCAR', 1, 0])
+2025-12-14 22:12:32,643 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:32,643 - DEBUG -   Entering get()
+2025-12-14 22:12:32,643 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:32,643 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/PCAR
+2025-12-14 22:12:32,643 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:32,643 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:32,643 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:32,643 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,643 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:32,644 - DEBUG - reusing cookie
+2025-12-14 22:12:32,644 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:32,644 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:32,644 - DEBUG - reusing crumb
+2025-12-14 22:12:32,644 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:32,644 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,644 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:32,862 - DEBUG - response code=200
+2025-12-14 22:12:32,862 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:32,862 - DEBUG -   Exiting get()
+2025-12-14 22:12:32,862 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:32,862 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:32,863 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['PCAR', 'America/New_York'])
+2025-12-14 22:12:32,865 - DEBUG -  Entering history()
+2025-12-14 22:12:32,866 - DEBUG - PCAR: Yahoo GET parameters: {'period1': '2023-09-24 22:12:32-04:00', 'period2': '2025-12-14 22:12:32-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:32,866 - DEBUG -   Entering get()
+2025-12-14 22:12:32,866 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:32,866 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/PCAR
+2025-12-14 22:12:32,866 - DEBUG - params={'period1': 1695607952, 'period2': 1765768352, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:32,866 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:32,866 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:32,866 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,866 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:32,866 - DEBUG - reusing cookie
+2025-12-14 22:12:32,866 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:32,866 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:32,866 - DEBUG - reusing crumb
+2025-12-14 22:12:32,866 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:32,866 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:32,867 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:33,050 - DEBUG - response code=200
+2025-12-14 22:12:33,050 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:33,050 - DEBUG -   Exiting get()
+2025-12-14 22:12:33,052 - DEBUG - PCAR: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:01
+2025-12-14 22:12:33,053 - DEBUG - PCAR: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:01-05:00
+2025-12-14 22:12:33,059 - DEBUG - PCAR: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:33,063 - DEBUG - PCAR: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:33,063 - DEBUG -  Exiting history()
+2025-12-14 22:12:33,063 - DEBUG - Exiting history()
+2025-12-14 22:12:33,064 - DEBUG - Fetched 558 days of data for PCAR from yfinance
+2025-12-14 22:12:33,064 - DEBUG - Entering history()
+2025-12-14 22:12:33,064 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['AAPL', 1, 0])
+2025-12-14 22:12:33,065 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:33,065 - DEBUG -   Entering get()
+2025-12-14 22:12:33,065 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:33,065 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/AAPL
+2025-12-14 22:12:33,065 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:33,065 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:33,065 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:33,065 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,065 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:33,065 - DEBUG - reusing cookie
+2025-12-14 22:12:33,065 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:33,065 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:33,065 - DEBUG - reusing crumb
+2025-12-14 22:12:33,066 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:33,066 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,066 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:33,204 - DEBUG - response code=200
+2025-12-14 22:12:33,204 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:33,204 - DEBUG -   Exiting get()
+2025-12-14 22:12:33,204 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:33,204 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:33,204 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['AAPL', 'America/New_York'])
+2025-12-14 22:12:33,206 - DEBUG -  Entering history()
+2025-12-14 22:12:33,206 - DEBUG - AAPL: Yahoo GET parameters: {'period1': '2023-09-24 22:12:33-04:00', 'period2': '2025-12-14 22:12:33-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:33,206 - DEBUG -   Entering get()
+2025-12-14 22:12:33,206 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:33,206 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/AAPL
+2025-12-14 22:12:33,206 - DEBUG - params={'period1': 1695607953, 'period2': 1765768353, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:33,206 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:33,206 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:33,207 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,207 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:33,207 - DEBUG - reusing cookie
+2025-12-14 22:12:33,207 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:33,207 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:33,207 - DEBUG - reusing crumb
+2025-12-14 22:12:33,207 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:33,207 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,207 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:33,451 - DEBUG - response code=200
+2025-12-14 22:12:33,451 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:33,451 - DEBUG -   Exiting get()
+2025-12-14 22:12:33,453 - DEBUG - AAPL: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:00
+2025-12-14 22:12:33,454 - DEBUG - AAPL: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:00-05:00
+2025-12-14 22:12:33,460 - DEBUG - AAPL: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:33,464 - DEBUG - AAPL: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:33,464 - DEBUG -  Exiting history()
+2025-12-14 22:12:33,464 - DEBUG - Exiting history()
+2025-12-14 22:12:33,464 - DEBUG - Fetched 558 days of data for AAPL from yfinance
+2025-12-14 22:12:33,465 - DEBUG - Entering history()
+2025-12-14 22:12:33,465 - DEBUG - ('SELECT "t1"."key", "t1"."value" FROM "_tz_kv" AS "t1" WHERE ("t1"."key" = ?) LIMIT ? OFFSET ?', ['AMZN', 1, 0])
+2025-12-14 22:12:33,466 - DEBUG -  Entering _fetch_ticker_tz()
+2025-12-14 22:12:33,466 - DEBUG -   Entering get()
+2025-12-14 22:12:33,466 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:33,466 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/AMZN
+2025-12-14 22:12:33,466 - DEBUG - params=frozendict.frozendict({'range': '1d', 'interval': '1d'})
+2025-12-14 22:12:33,466 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:33,466 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:33,466 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,466 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:33,466 - DEBUG - reusing cookie
+2025-12-14 22:12:33,466 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:33,466 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:33,466 - DEBUG - reusing crumb
+2025-12-14 22:12:33,466 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:33,466 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,466 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:33,535 - DEBUG - response code=200
+2025-12-14 22:12:33,535 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:33,535 - DEBUG -   Exiting get()
+2025-12-14 22:12:33,535 - DEBUG -  Exiting _fetch_ticker_tz()
+2025-12-14 22:12:33,536 - DEBUG - ('BEGIN', None)
+2025-12-14 22:12:33,536 - DEBUG - ('INSERT INTO "_tz_kv" ("key", "value") VALUES (?, ?)', ['AMZN', 'America/New_York'])
+2025-12-14 22:12:33,537 - DEBUG -  Entering history()
+2025-12-14 22:12:33,537 - DEBUG - AMZN: Yahoo GET parameters: {'period1': '2023-09-24 22:12:33-04:00', 'period2': '2025-12-14 22:12:33-05:00', 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:33,537 - DEBUG -   Entering get()
+2025-12-14 22:12:33,537 - DEBUG -    Entering _make_request()
+2025-12-14 22:12:33,538 - DEBUG - url=https://query2.finance.yahoo.com/v8/finance/chart/AMZN
+2025-12-14 22:12:33,538 - DEBUG - params={'period1': 1695607953, 'period2': 1765768353, 'interval': '1d', 'includePrePost': False, 'events': 'div,splits,capitalGains'}
+2025-12-14 22:12:33,538 - DEBUG -     Entering _get_cookie_and_crumb()
+2025-12-14 22:12:33,538 - DEBUG - cookie_mode = 'basic'
+2025-12-14 22:12:33,538 - DEBUG -      Entering _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,538 - DEBUG -       Entering _get_cookie_basic()
+2025-12-14 22:12:33,538 - DEBUG - reusing cookie
+2025-12-14 22:12:33,538 - DEBUG -       Exiting _get_cookie_basic()
+2025-12-14 22:12:33,538 - DEBUG -       Entering _get_crumb_basic()
+2025-12-14 22:12:33,538 - DEBUG - reusing crumb
+2025-12-14 22:12:33,538 - DEBUG -       Exiting _get_crumb_basic()
+2025-12-14 22:12:33,538 - DEBUG -      Exiting _get_cookie_and_crumb_basic()
+2025-12-14 22:12:33,538 - DEBUG -     Exiting _get_cookie_and_crumb()
+2025-12-14 22:12:33,638 - DEBUG - response code=200
+2025-12-14 22:12:33,638 - DEBUG -    Exiting _make_request()
+2025-12-14 22:12:33,638 - DEBUG -   Exiting get()
+2025-12-14 22:12:33,640 - DEBUG - AMZN: yfinance received OHLC data: 2023-09-25 13:30:00 -> 2025-12-12 21:00:02
+2025-12-14 22:12:33,641 - DEBUG - AMZN: OHLC after cleaning: 2023-09-25 09:30:00-04:00 -> 2025-12-12 16:00:02-05:00
+2025-12-14 22:12:33,643 - DEBUG - AMZN: OHLC after combining events: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:33,647 - DEBUG - AMZN: yfinance returning OHLC: 2023-09-25 00:00:00-04:00 -> 2025-12-12 00:00:00-05:00
+2025-12-14 22:12:33,647 - DEBUG -  Exiting history()
+2025-12-14 22:12:33,647 - DEBUG - Exiting history()
+2025-12-14 22:12:33,648 - DEBUG - Fetched 558 days of data for AMZN from yfinance
+2025-12-14 22:12:33,648 - INFO - Fetched data for 8 symbols
+2025-12-14 22:12:33,653 - INFO - Backtest progress: 0.0% (2023-12-14)
+2025-12-14 22:12:33,774 - DEBUG - AAPL: Breakout too old (692 days)
+2025-12-14 22:12:33,782 - DEBUG - AMZN: Breakout too old (691 days)
+2025-12-14 22:12:33,837 - DEBUG - AMZN: Breakout too old (691 days)
+2025-12-14 22:12:33,967 - DEBUG - WFC: Breakout too old (684 days)
+2025-12-14 22:12:34,025 - DEBUG - WFC: Breakout too old (684 days)
+2025-12-14 22:12:34,084 - DEBUG - WFC: Breakout too old (684 days)
+2025-12-14 22:12:34,969 - INFO - Backtest progress: 9.6% (2024-02-22)
+2025-12-14 22:12:39,187 - INFO - Backtest progress: 19.2% (2024-05-02)
+2025-12-14 22:12:39,286 - DEBUG - AMZN: Breakout too old (594 days)
+2025-12-14 22:12:39,475 - DEBUG - AAPL: Breakout too old (590 days)
+2025-12-14 22:12:41,963 - DEBUG - PCAR: Breakout too old (557 days)
+2025-12-14 22:12:42,078 - DEBUG - PCAR: Breakout too old (557 days)
+2025-12-14 22:12:43,806 - DEBUG - AMZN: Breakout too old (536 days)
+2025-12-14 22:12:43,935 - DEBUG - AMZN: Breakout too old (536 days)
+2025-12-14 22:12:44,971 - INFO - Backtest progress: 28.7% (2024-07-11)
+2025-12-14 22:12:52,399 - INFO - Backtest progress: 38.3% (2024-09-19)
+2025-12-14 22:12:58,217 - DEBUG - AMZN: Breakout too old (408 days)
+2025-12-14 22:13:01,481 - INFO - Backtest progress: 47.9% (2024-11-28)
+2025-12-14 22:13:08,341 - DEBUG - OXY: Breakout too old (335 days)
+2025-12-14 22:13:08,560 - DEBUG - OXY: Breakout too old (335 days)
+2025-12-14 22:13:08,777 - DEBUG - OXY: Breakout too old (335 days)
+2025-12-14 22:13:09,975 - DEBUG - AMZN: Breakout too old (326 days)
+2025-12-14 22:13:10,197 - DEBUG - AMZN: Breakout too old (326 days)
+2025-12-14 22:13:11,978 - INFO - Backtest progress: 57.5% (2025-02-06)
+2025-12-14 22:13:24,037 - INFO - Backtest progress: 67.0% (2025-04-17)
+2025-12-14 22:13:37,582 - INFO - Backtest progress: 76.6% (2025-06-26)
+2025-12-14 22:13:50,377 - DEBUG - OXY: Breakout too old (114 days)
+2025-12-14 22:13:52,754 - INFO - Backtest progress: 86.2% (2025-09-04)
+2025-12-14 22:14:09,560 - INFO - Backtest progress: 95.8% (2025-11-13)
+2025-12-14 22:14:17,501 - INFO - Calculating backtest results...
+2025-12-14 22:14:17,870 - INFO - Backtest completed: 0 trades, 0.0% return, 0.0% win rate
+2025-12-14 22:14:17,871 - INFO - Backtest report generated: backtest_reports/backtest_report_20251214_221417.html
+2025-12-14 22:14:17,872 - DEBUG - Loaded backend agg version v2.2.
+2025-12-14 22:14:17,874 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 5.335
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,875 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,876 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.335
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,877 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 5.05
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 5.335
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf', name='Liberation Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 3.335
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-ExtraLight.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=200, stretch='normal', size='scalable')) = 4.24
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuMathTeXGyre.ttf', name='DejaVu Math TeX Gyre', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.05
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 4.25
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Thin.ttf', name='Lato', style='normal', variant='normal', weight=275, stretch='normal', size='scalable')) = 10.16875
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-HairlineItalic.ttf', name='Lato', style='italic', variant='normal', weight=250, stretch='normal', size='scalable')) = 11.1925
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-MediumItalic.ttf', name='Lato', style='italic', variant='normal', weight=500, stretch='normal', size='scalable')) = 11.145
+2025-12-14 22:14:17,878 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 10.25
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Black.ttf', name='Lato', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 10.525
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='condensed', size='scalable')) = 11.25
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-HeavyItalic.ttf', name='Lato', style='italic', variant='normal', weight=800, stretch='normal', size='scalable')) = 11.43
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Light.ttf', name='Lato', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-BlackItalic.ttf', name='Lato', style='italic', variant='normal', weight=900, stretch='normal', size='scalable')) = 11.525
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf', name='Liberation Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf', name='Liberation Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 3.05
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 10.535
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='condensed', size='scalable')) = 11.535
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='condensed', size='scalable')) = 5.535
+2025-12-14 22:14:17,879 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Regular.ttf', name='Lato', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 5.05
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf', name='Liberation Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 2.05
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 4.535
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Semibold.ttf', name='Lato', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-SemiboldItalic.ttf', name='Lato', style='italic', variant='normal', weight=600, stretch='normal', size='scalable')) = 11.24
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Hairline.ttf', name='Lato', style='normal', variant='normal', weight=250, stretch='normal', size='scalable')) = 10.1925
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', name='Liberation Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', name='Liberation Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 2.335
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-LightItalic.ttf', name='Lato', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-ThinItalic.ttf', name='Lato', style='italic', variant='normal', weight=275, stretch='normal', size='scalable')) = 11.16875
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Bold.ttf', name='Lato', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Italic.ttf', name='Lato', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,880 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-BoldItalic.ttf', name='Lato', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='condensed', size='scalable')) = 5.25
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Medium.ttf', name='Lato', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.335
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Heavy.ttf', name='Lato', style='normal', variant='normal', weight=800, stretch='normal', size='scalable')) = 10.43
+2025-12-14 22:14:17,881 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,881 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to Liberation Sans ('/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf') with score of 2.050000.
+2025-12-14 22:14:17,914 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.0.
+2025-12-14 22:14:17,914 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 5.335
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,915 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,916 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 5.05
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 5.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf', name='Liberation Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 3.335
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,917 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-ExtraLight.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=200, stretch='normal', size='scalable')) = 4.24
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuMathTeXGyre.ttf', name='DejaVu Math TeX Gyre', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.05
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 4.25
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Thin.ttf', name='Lato', style='normal', variant='normal', weight=275, stretch='normal', size='scalable')) = 10.16875
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-HairlineItalic.ttf', name='Lato', style='italic', variant='normal', weight=250, stretch='normal', size='scalable')) = 11.1925
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-MediumItalic.ttf', name='Lato', style='italic', variant='normal', weight=500, stretch='normal', size='scalable')) = 11.145
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 10.25
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Black.ttf', name='Lato', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 10.525
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='condensed', size='scalable')) = 11.25
+2025-12-14 22:14:17,918 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-HeavyItalic.ttf', name='Lato', style='italic', variant='normal', weight=800, stretch='normal', size='scalable')) = 11.43
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Light.ttf', name='Lato', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-BlackItalic.ttf', name='Lato', style='italic', variant='normal', weight=900, stretch='normal', size='scalable')) = 11.525
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf', name='Liberation Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf', name='Liberation Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 3.05
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 10.535
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='condensed', size='scalable')) = 11.535
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='condensed', size='scalable')) = 5.535
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Regular.ttf', name='Lato', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 5.05
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf', name='Liberation Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 2.05
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 4.535
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Semibold.ttf', name='Lato', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-12-14 22:14:17,919 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-SemiboldItalic.ttf', name='Lato', style='italic', variant='normal', weight=600, stretch='normal', size='scalable')) = 11.24
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Hairline.ttf', name='Lato', style='normal', variant='normal', weight=250, stretch='normal', size='scalable')) = 10.1925
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', name='Liberation Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', name='Liberation Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 2.335
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-LightItalic.ttf', name='Lato', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-ThinItalic.ttf', name='Lato', style='italic', variant='normal', weight=275, stretch='normal', size='scalable')) = 11.16875
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Bold.ttf', name='Lato', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Italic.ttf', name='Lato', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-BoldItalic.ttf', name='Lato', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='condensed', size='scalable')) = 5.25
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,920 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Medium.ttf', name='Lato', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-12-14 22:14:17,921 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,921 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.335
+2025-12-14 22:14:17,921 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Heavy.ttf', name='Lato', style='normal', variant='normal', weight=800, stretch='normal', size='scalable')) = 10.43
+2025-12-14 22:14:17,921 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,921 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.0 to Liberation Sans ('/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf') with score of 2.050000.
+2025-12-14 22:14:17,933 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0.
+2025-12-14 22:14:17,933 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,933 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,933 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,933 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,933 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 5.335
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,934 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 5.05
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 5.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf', name='Liberation Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 3.335
+2025-12-14 22:14:17,935 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-ExtraLight.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=200, stretch='normal', size='scalable')) = 4.24
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuMathTeXGyre.ttf', name='DejaVu Math TeX Gyre', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.05
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 4.25
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Thin.ttf', name='Lato', style='normal', variant='normal', weight=275, stretch='normal', size='scalable')) = 10.16875
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-HairlineItalic.ttf', name='Lato', style='italic', variant='normal', weight=250, stretch='normal', size='scalable')) = 11.1925
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-MediumItalic.ttf', name='Lato', style='italic', variant='normal', weight=500, stretch='normal', size='scalable')) = 11.145
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='condensed', size='scalable')) = 10.25
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Black.ttf', name='Lato', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 10.525
+2025-12-14 22:14:17,936 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='condensed', size='scalable')) = 11.25
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-HeavyItalic.ttf', name='Lato', style='italic', variant='normal', weight=800, stretch='normal', size='scalable')) = 11.43
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Light.ttf', name='Lato', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-BlackItalic.ttf', name='Lato', style='italic', variant='normal', weight=900, stretch='normal', size='scalable')) = 11.525
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf', name='Liberation Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf', name='Liberation Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf', name='Liberation Sans', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 3.05
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 10.535
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='condensed', size='scalable')) = 11.535
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='condensed', size='scalable')) = 5.535
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Regular.ttf', name='Lato', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 5.05
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf', name='Liberation Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 2.05
+2025-12-14 22:14:17,937 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='condensed', size='scalable')) = 4.535
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Semibold.ttf', name='Lato', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf', name='Liberation Mono', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-SemiboldItalic.ttf', name='Lato', style='italic', variant='normal', weight=600, stretch='normal', size='scalable')) = 11.24
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Hairline.ttf', name='Lato', style='normal', variant='normal', weight=250, stretch='normal', size='scalable')) = 10.1925
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf', name='Liberation Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', name='Liberation Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 2.335
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-LightItalic.ttf', name='Lato', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-ThinItalic.ttf', name='Lato', style='italic', variant='normal', weight=275, stretch='normal', size='scalable')) = 11.16875
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Bold.ttf', name='Lato', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Italic.ttf', name='Lato', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-BoldItalic.ttf', name='Lato', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,938 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='condensed', size='scalable')) = 5.25
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf', name='Liberation Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Medium.ttf', name='Lato', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.335
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/lato/Lato-Heavy.ttf', name='Lato', style='normal', variant='normal', weight=800, stretch='normal', size='scalable')) = 10.43
+2025-12-14 22:14:17,939 - DEBUG - findfont: score(FontEntry(fname='/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-12-14 22:14:17,939 - DEBUG - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=12.0 to Liberation Sans ('/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf') with score of 2.050000.
+2025-12-14 22:14:18,622 - INFO - Generated 2 performance charts
