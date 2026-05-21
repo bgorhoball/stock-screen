@@ -2,36 +2,36 @@
 
 ## 📊 Summary
 - **Total symbols scanned:** 196
-- **VCP patterns detected:** 56
-- **Detection rate:** 28.57%
-- **Execution time:** 90.46 seconds
+- **VCP patterns detected:** 65
+- **Detection rate:** 33.16%
+- **Execution time:** 104.01 seconds
 
 ## 🎯 High-Confidence Matches
 
 | Symbol | Confidence | Contractions | Base Days | Volume Trend | Breakout |
 |--------|------------|--------------|-----------|--------------|----------|
-| AVGO | 0.95 | 2 | 57 | decreasing | ✅ |
+| BLK | 0.95 | 2 | 50 | decreasing | ✅ |
 | SLB | 0.95 | 2 | 32 | decreasing | ✅ |
-| JCI | 0.95 | 2 | 41 | decreasing | ✅ |
+| AVGO | 0.90 | 3 | 65 | stable | ✅ |
 | FTNT | 0.90 | 2 | 36 | stable | ✅ |
 | DXCM | 0.90 | 2 | 32 | stable | ✅ |
 | WMT | 0.90 | 3 | 45 | stable | ✅ |
 | CL | 0.90 | 3 | 32 | stable | ✅ |
 | FOXA | 0.90 | 4 | 60 | stable | ✅ |
 | WELL | 0.90 | 3 | 57 | stable | ✅ |
-| TSLA | 0.80 | 2 | 63 | stable | ✅ |
+| COIN | 0.90 | 2 | 58 | stable | ✅ |
 
 
 ## 📈 Pattern Analysis
-- **High confidence (≥0.8):** 32
-- **Medium confidence (0.5-0.8):** 61
-- **Breakouts detected:** 38
+- **High confidence (≥0.8):** 34
+- **Medium confidence (0.5-0.8):** 64
+- **Breakouts detected:** 43
 
 ## 📊 Volume Trends
-- **insufficient_contractions:** 98
-- **stable:** 84
-- **decreasing:** 8
-- **increasing:** 6
+- **insufficient_contractions:** 93
+- **stable:** 91
+- **decreasing:** 5
+- **increasing:** 7
 
 
 ---
