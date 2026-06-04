@@ -2,36 +2,36 @@
 
 ## 📊 Summary
 - **Total symbols scanned:** 196
-- **VCP patterns detected:** 62
-- **Detection rate:** 31.63%
-- **Execution time:** 83.62 seconds
+- **VCP patterns detected:** 67
+- **Detection rate:** 34.18%
+- **Execution time:** 82.93 seconds
 
 ## 🎯 High-Confidence Matches
 
 | Symbol | Confidence | Contractions | Base Days | Volume Trend | Breakout |
 |--------|------------|--------------|-----------|--------------|----------|
 | ADBE | 1.00 | 3 | 41 | stable | ✅ |
+| DOCU | 1.00 | 3 | 43 | stable | ✅ |
+| CSCO | 0.95 | 2 | 27 | decreasing | ✅ |
 | MSFT | 0.90 | 2 | 27 | stable | ✅ |
+| META | 0.90 | 2 | 41 | stable | ✅ |
 | AVGO | 0.90 | 2 | 21 | stable | ✅ |
 | CRM | 0.90 | 3 | 48 | stable | ✅ |
-| ADI | 0.90 | 2 | 49 | stable | ✅ |
-| DXCM | 0.90 | 2 | 32 | stable | ✅ |
-| CL | 0.90 | 3 | 32 | stable | ✅ |
 | VZ | 0.90 | 3 | 64 | stable | ✅ |
-| SPG | 0.90 | 3 | 69 | stable | ✅ |
-| ACN | 0.90 | 4 | 61 | stable | ✅ |
+| ACN | 0.90 | 3 | 41 | stable | ✅ |
+| NOW | 0.80 | 2 | 28 | stable | ✅ |
 
 
 ## 📈 Pattern Analysis
-- **High confidence (≥0.8):** 40
-- **Medium confidence (0.5-0.8):** 77
-- **Breakouts detected:** 46
+- **High confidence (≥0.8):** 45
+- **Medium confidence (0.5-0.8):** 79
+- **Breakouts detected:** 53
 
 ## 📊 Volume Trends
-- **insufficient_contractions:** 73
-- **stable:** 105
-- **decreasing:** 6
-- **increasing:** 12
+- **insufficient_contractions:** 66
+- **stable:** 112
+- **decreasing:** 7
+- **increasing:** 11
 
 
 ---
