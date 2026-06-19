@@ -1,22 +1,22 @@
 {
-  "scan_date": "2026-06-19 00:20:08",
-  "execution_time_seconds": 88.38,
+  "scan_date": "2026-06-19 23:59:32",
+  "execution_time_seconds": 83.58,
   "total_symbols_scanned": 196,
   "symbols_with_data": 198,
-  "vcp_patterns_detected": 71,
-  "vcp_detection_rate": 36.22,
-  "high_confidence_matches": 40,
+  "vcp_patterns_detected": 70,
+  "vcp_detection_rate": 35.71,
+  "high_confidence_matches": 39,
   "medium_confidence_matches": 89,
-  "breakouts_detected": 61,
+  "breakouts_detected": 60,
   "volume_trend_distribution": {
-    "insufficient_contractions": 57,
-    "stable": 110,
+    "insufficient_contractions": 58,
+    "stable": 109,
     "increasing": 26,
     "decreasing": 3
   },
-  "avg_data_points_per_symbol": 57.4,
+  "avg_data_points_per_symbol": 56.4,
   "data_date_range": {
-    "earliest": "2026-03-27",
+    "earliest": "2026-03-30",
     "latest": "2026-06-18"
   }
 }

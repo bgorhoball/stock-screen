@@ -2,9 +2,9 @@
 
 ## 📊 Summary
 - **Total symbols scanned:** 196
-- **VCP patterns detected:** 71
-- **Detection rate:** 36.22%
-- **Execution time:** 88.38 seconds
+- **VCP patterns detected:** 70
+- **Detection rate:** 35.71%
+- **Execution time:** 83.58 seconds
 
 ## 🎯 High-Confidence Matches
 
@@ -23,13 +23,13 @@
 
 
 ## 📈 Pattern Analysis
-- **High confidence (≥0.8):** 40
+- **High confidence (≥0.8):** 39
 - **Medium confidence (0.5-0.8):** 89
-- **Breakouts detected:** 61
+- **Breakouts detected:** 60
 
 ## 📊 Volume Trends
-- **insufficient_contractions:** 57
-- **stable:** 110
+- **insufficient_contractions:** 58
+- **stable:** 109
 - **increasing:** 26
 - **decreasing:** 3
 

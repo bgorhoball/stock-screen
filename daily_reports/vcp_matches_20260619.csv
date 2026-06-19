@@ -20,7 +20,6 @@ KMB,0.8,4,48,stable,True,2026-06-09,100.52,3.4,5.7,4 contractions detected; Pull
 MPC,0.8,2,29,stable,True,2026-06-08,266.17,8.6,10.5,2 contractions detected; Pullback range: 8.6% - 10.5%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
 RTX,0.8,2,49,stable,True,2026-06-05,180.99,5.1,16.6,2 contractions detected; Pullback range: 5.1% - 16.6%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
 HON,0.8,2,49,stable,True,2026-06-12,220.31,3.8,12.2,2 contractions detected; Pullback range: 3.8% - 12.2%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
-LMT,0.8,2,66,stable,True,2026-06-11,548.68,5.1,21.6,2 contractions detected; Pullback range: 5.1% - 21.6%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
 ITW,0.8,2,47,stable,True,2026-06-15,262.51,6.8,10.1,2 contractions detected; Pullback range: 6.8% - 10.1%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
 PLD,0.8,2,39,stable,True,2026-06-09,146.46,3.6,5.1,2 contractions detected; Pullback range: 3.6% - 5.1%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
 EQIX,0.8,3,40,increasing,True,2026-06-16,1094.68,3.6,7.4,3 contractions detected; Pullback range: 3.6% - 7.4%; Volume trend: increasing; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
@@ -29,9 +28,8 @@ CCI,0.8,4,57,stable,True,2026-06-05,93.4,3.8,7.9,4 contractions detected; Pullba
 MSFT,0.75,3,40,stable,False,,,5.1,8.2,3 contractions detected; Pullback range: 5.1% - 8.2%; Volume trend: stable; Price near recent highs; Confidence: 0.75
 AVGO,0.75,3,41,stable,False,,,7.5,8.3,3 contractions detected; Pullback range: 7.5% - 8.3%; Volume trend: stable; Price near recent highs; Confidence: 0.75
 WMT,0.75,3,40,stable,False,,,4.9,5.5,3 contractions detected; Pullback range: 4.9% - 5.5%; Volume trend: stable; Price near recent highs; Confidence: 0.75
-GIS,0.75,3,53,stable,False,,,5.7,10.0,3 contractions detected; Pullback range: 5.7% - 10.0%; Volume trend: stable; Price near recent highs; Confidence: 0.75
 VLO,0.75,3,37,stable,False,,,7.2,11.2,3 contractions detected; Pullback range: 7.2% - 11.2%; Volume trend: stable; Price near recent highs; Confidence: 0.75
-DOCU,0.75,4,56,stable,False,,,7.4,14.3,4 contractions detected; Pullback range: 7.4% - 14.3%; Volume trend: stable; Price near recent highs; Confidence: 0.75
+DOCU,0.75,3,41,stable,False,,,7.4,11.5,3 contractions detected; Pullback range: 7.4% - 11.5%; Volume trend: stable; Price near recent highs; Confidence: 0.75
 CSCO,0.7,2,56,stable,True,2026-06-05,121.64,4.6,5.2,2 contractions detected; Pullback range: 4.6% - 5.2%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.70
 MDT,0.7,2,57,increasing,True,2026-06-05,81.67,7.5,16.3,2 contractions detected; Pullback range: 7.5% - 16.3%; Volume trend: increasing; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.70
 A,0.7,2,44,increasing,True,2026-06-05,135.44,9.9,11.7,2 contractions detected; Pullback range: 9.9% - 11.7%; Volume trend: increasing; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.70
@@ -47,6 +45,7 @@ SYK,0.65,2,57,stable,False,,,9.9,20.4,2 contractions detected; Pullback range: 9
 ICE,0.65,2,34,stable,False,,,5.6,9.3,2 contractions detected; Pullback range: 5.6% - 9.3%; Volume trend: stable; Price near recent highs; Confidence: 0.65
 CME,0.65,2,42,stable,False,,,4.0,12.2,2 contractions detected; Pullback range: 4.0% - 12.2%; Volume trend: stable; Price near recent highs; Confidence: 0.65
 COST,0.65,2,40,stable,False,,,4.5,6.7,2 contractions detected; Pullback range: 4.5% - 6.7%; Volume trend: stable; Price near recent highs; Confidence: 0.65
+GIS,0.65,2,22,stable,False,,,5.7,8.8,2 contractions detected; Pullback range: 5.7% - 8.8%; Volume trend: stable; Price near recent highs; Confidence: 0.65
 COP,0.65,2,43,stable,False,,,10.6,11.4,2 contractions detected; Pullback range: 10.6% - 11.4%; Volume trend: stable; Price near recent highs; Confidence: 0.65
 EOG,0.65,2,29,stable,False,,,9.3,9.8,2 contractions detected; Pullback range: 9.3% - 9.8%; Volume trend: stable; Price near recent highs; Confidence: 0.65
 PSX,0.65,2,34,stable,False,,,8.0,8.8,2 contractions detected; Pullback range: 8.0% - 8.8%; Volume trend: stable; Price near recent highs; Confidence: 0.65
