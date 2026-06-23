@@ -2,36 +2,36 @@
 
 ## 📊 Summary
 - **Total symbols scanned:** 196
-- **VCP patterns detected:** 70
-- **Detection rate:** 35.71%
-- **Execution time:** 90.09 seconds
+- **VCP patterns detected:** 72
+- **Detection rate:** 36.73%
+- **Execution time:** 85.32 seconds
 
 ## 🎯 High-Confidence Matches
 
 | Symbol | Confidence | Contractions | Base Days | Volume Trend | Breakout |
 |--------|------------|--------------|-----------|--------------|----------|
 | ABBV | 0.90 | 3 | 49 | stable | ✅ |
+| BDX | 0.90 | 3 | 53 | stable | ✅ |
 | PCG | 0.90 | 3 | 57 | stable | ✅ |
 | PSA | 0.90 | 3 | 50 | stable | ✅ |
 | SPG | 0.90 | 3 | 52 | stable | ✅ |
 | TXN | 0.80 | 2 | 33 | stable | ✅ |
 | MCHP | 0.80 | 2 | 27 | stable | ✅ |
-| FTNT | 0.80 | 2 | 57 | stable | ✅ |
-| ABT | 0.80 | 2 | 58 | stable | ✅ |
 | LLY | 0.80 | 2 | 59 | stable | ✅ |
 | VRTX | 0.80 | 2 | 51 | stable | ✅ |
+| MRNA | 0.80 | 2 | 44 | stable | ✅ |
 
 
 ## 📈 Pattern Analysis
-- **High confidence (≥0.8):** 39
-- **Medium confidence (0.5-0.8):** 93
-- **Breakouts detected:** 62
+- **High confidence (≥0.8):** 43
+- **Medium confidence (0.5-0.8):** 87
+- **Breakouts detected:** 60
 
 ## 📊 Volume Trends
 - **insufficient_contractions:** 54
-- **stable:** 108
-- **increasing:** 30
-- **decreasing:** 4
+- **stable:** 105
+- **increasing:** 36
+- **decreasing:** 1
 
 
 ---
