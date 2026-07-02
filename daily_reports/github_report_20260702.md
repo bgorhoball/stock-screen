@@ -2,35 +2,35 @@
 
 ## 📊 Summary
 - **Total symbols scanned:** 196
-- **VCP patterns detected:** 69
-- **Detection rate:** 35.2%
-- **Execution time:** 90.18 seconds
+- **VCP patterns detected:** 73
+- **Detection rate:** 37.24%
+- **Execution time:** 101.15 seconds
 
 ## 🎯 High-Confidence Matches
 
 | Symbol | Confidence | Contractions | Base Days | Volume Trend | Breakout |
 |--------|------------|--------------|-----------|--------------|----------|
+| ABBV | 1.00 | 3 | 49 | stable | ✅ |
+| AXP | 1.00 | 3 | 69 | stable | ✅ |
 | SPG | 1.00 | 3 | 52 | stable | ✅ |
 | INTC | 0.90 | 2 | 42 | stable | ✅ |
-| ABBV | 0.90 | 3 | 49 | stable | ✅ |
 | TMO | 0.90 | 3 | 49 | stable | ✅ |
 | BDX | 0.90 | 3 | 53 | stable | ✅ |
 | ALGN | 0.90 | 2 | 57 | stable | ✅ |
-| BKNG | 0.90 | 2 | 55 | stable | ✅ |
-| MO | 0.90 | 2 | 41 | stable | ✅ |
-| VLO | 0.90 | 3 | 37 | stable | ✅ |
-| PCG | 0.90 | 2 | 24 | stable | ✅ |
+| ILMN | 0.90 | 2 | 44 | stable | ✅ |
+| SPGI | 0.90 | 2 | 55 | stable | ✅ |
+| PRU | 0.90 | 2 | 60 | stable | ✅ |
 
 
 ## 📈 Pattern Analysis
-- **High confidence (≥0.8):** 47
-- **Medium confidence (0.5-0.8):** 81
-- **Breakouts detected:** 70
+- **High confidence (≥0.8):** 58
+- **Medium confidence (0.5-0.8):** 74
+- **Breakouts detected:** 77
 
 ## 📊 Volume Trends
-- **insufficient_contractions:** 52
-- **stable:** 113
-- **increasing:** 30
+- **insufficient_contractions:** 49
+- **stable:** 117
+- **increasing:** 29
 - **decreasing:** 1
 
 
