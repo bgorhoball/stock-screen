@@ -1,0 +1,22 @@
+{
+  "scan_date": "2026-07-27 23:55:29",
+  "execution_time_seconds": 117.41,
+  "total_symbols_scanned": 195,
+  "symbols_with_data": 198,
+  "vcp_patterns_detected": 82,
+  "vcp_detection_rate": 42.05,
+  "high_confidence_matches": 50,
+  "medium_confidence_matches": 87,
+  "breakouts_detected": 67,
+  "volume_trend_distribution": {
+    "stable": 113,
+    "increasing": 28,
+    "insufficient_contractions": 50,
+    "decreasing": 4
+  },
+  "avg_data_points_per_symbol": 55.8,
+  "data_date_range": {
+    "earliest": "2026-05-05",
+    "latest": "2026-07-27"
+  }
+}
