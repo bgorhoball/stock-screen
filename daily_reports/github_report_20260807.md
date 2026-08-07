@@ -1,10 +1,10 @@
 # Daily VCP Screening Report - 2026-08-07
 
 ## 📊 Summary
-- **Total symbols scanned:** 195
-- **VCP patterns detected:** 79
-- **Detection rate:** 40.51%
-- **Execution time:** 104.02 seconds
+- **Total symbols scanned:** 193
+- **VCP patterns detected:** 80
+- **Detection rate:** 41.45%
+- **Execution time:** 102.57 seconds
 
 ## 🎯 High-Confidence Matches
 
@@ -23,15 +23,15 @@
 
 
 ## 📈 Pattern Analysis
-- **High confidence (≥0.8):** 63
-- **Medium confidence (0.5-0.8):** 86
-- **Breakouts detected:** 86
+- **High confidence (≥0.8):** 59
+- **Medium confidence (0.5-0.8):** 89
+- **Breakouts detected:** 81
 
 ## 📊 Volume Trends
 - **stable:** 126
 - **decreasing:** 6
 - **increasing:** 20
-- **insufficient_contractions:** 43
+- **insufficient_contractions:** 41
 
 
 ---
