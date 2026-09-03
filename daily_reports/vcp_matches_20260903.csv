@@ -1,0 +1,3 @@
+symbol,confidence,contractions_count,base_length_days,volume_trend,breakout_detected,breakout_date,breakout_price,pullback_range_min,pullback_range_max,notes
+BRK.B,0.8,2,34,stable,True,2026-08-24,504.32,3.4,5.2,2 contractions detected; Pullback range: 3.4% - 5.2%; Volume trend: stable; Price near recent highs; Breakout detected without volume confirmation; Confidence: 0.80
+FI,0.55,2,37,stable,False,,,10.6,12.5,2 contractions detected; Pullback range: 10.6% - 12.5%; Volume trend: stable; Price near recent highs; Confidence: 0.55
