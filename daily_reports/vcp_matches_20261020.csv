@@ -1,0 +1,2 @@
+symbol,confidence,contractions_count,base_length_days,volume_trend,breakout_detected,breakout_date,breakout_price,pullback_range_min,pullback_range_max,notes
+FI,0.65,2,26,stable,False,,,9.1,12.5,2 contractions detected; Pullback range: 9.1% - 12.5%; Volume trend: stable; Price near recent highs; Confidence: 0.65
